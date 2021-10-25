@@ -41,24 +41,26 @@ const getToshaApys = async () => {
     // console.log(vaultApr.toString());
     // console.log(vaultApy.toString());
 
-    const apys = { [POOL_NAME]: vaultApy };
+    // const apys = { [POOL_NAME]: vaultApy };
 
-    const apyBreakdowns = {
-        [POOL_NAME]: {
-            vaultApr: vaultApr.toNumber(),
-            compoundingsPerYear: DAILY_HPY,
-            toshaPerformanceFee: toshaPerformanceFee,
-            vaultApy: vaultApy,
-            lpFee: 0,
-            tradingApr: 0,
-            totalApy: vaultApy,
-        },
-    };
+    // const apyBreakdowns = {
+    //     [POOL_NAME]: {
+    //         vaultApr: vaultApr.toNumber(),
+    //         compoundingsPerYear: DAILY_HPY,
+    //         toshaPerformanceFee: toshaPerformanceFee,
+    //         vaultApy: vaultApy,
+    //         lpFee: 0,
+    //         tradingApr: 0,
+    //         totalApy: vaultApy,
+    //     },
+    // };
 
-    return {
-        apys,
-        apyBreakdowns,
-    };
+    // return {
+    //     apys,
+    //     apyBreakdowns,
+    // };
+
+    return { POOL_NAME : vaultApy };
 };
 
 const getYearlyRewardsInUsd = async (farm, poolId) => {
