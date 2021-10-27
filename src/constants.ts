@@ -35,6 +35,7 @@ const BSC_RPC_ENDPOINTS = CUSTOM_BSC_RPC_ENDPOINTS.length
   : MAINNET_BSC_RPC_ENDPOINTS;
 
 const BSC_RPC = BSC_RPC_ENDPOINTS[0];
+const CELO_RPC = process.env.CELO_RPC || 'https://alfajores-forno.celo-testnet.org';
 const HECO_RPC = process.env.HECO_RPC || 'https://http-mainnet.hecochain.com';
 const AVAX_RPC = process.env.AVAX_RPC || 'https://api.avax.network/ext/bc/C/rpc';
 const POLYGON_RPC = process.env.POLYGON_RPC || 'https://rpc-mainnet.maticvigil.com/';
@@ -43,6 +44,7 @@ const ONE_RPC = process.env.ONE_RPC || 'https://api.s0.t.hmny.io/';
 const ARBITRUM_RPC = process.env.ARBITRUM_RPC || 'https://arb1.arbitrum.io/rpc';
 
 const BSC_CHAIN_ID = ChainId.bsc;
+const CELO_CHAIN_ID = ChainId.celo;
 const HECO_CHAIN_ID = ChainId.heco;
 const POLYGON_CHAIN_ID = ChainId.polygon;
 const AVAX_CHAIN_ID = ChainId.avax;
@@ -60,6 +62,7 @@ const APE_LPF = 0.002;
 const SPOOKY_LPF = 0.002;
 
 const MULTICHAIN_RPC: Record<ChainId, string> = {
+  [ChainId.celo]: CELO_RPC,
   [ChainId.bsc]: BSC_RPC,
   [ChainId.heco]: HECO_RPC,
   [ChainId.polygon]: POLYGON_RPC,
@@ -68,7 +71,9 @@ const MULTICHAIN_RPC: Record<ChainId, string> = {
   [ChainId.one]: ONE_RPC,
   [ChainId.arbitrum]: ARBITRUM_RPC,
 };
-
+// TODO: Change Chain ID to prod and following URL to prod/master branch
+const CELO_VAULTS_ENDPOINT =
+  'https://raw.githubusercontent.com/0xtosha/tosha-app/DEV/src/features/configure/vault/celo_pools.js';
 const BSC_VAULTS_ENDPOINT =
   'https://raw.githubusercontent.com/beefyfinance/beefy-app/prod/src/features/configure/vault/bsc_pools.js';
 const HECO_VAULTS_ENDPOINT =
@@ -85,6 +90,7 @@ const ARBITRUM_VAULTS_ENDPOINT =
   'https://raw.githubusercontent.com/beefyfinance/beefy-app/prod/src/features/configure/vault/arbitrum_pools.js';
 
 const MULTICHAIN_ENDPOINTS = {
+  celo: CELO_VAULTS_ENDPOINT,
   bsc: BSC_VAULTS_ENDPOINT,
   heco: HECO_VAULTS_ENDPOINT,
   avax: AVAX_VAULTS_ENDPOINT,
@@ -103,6 +109,9 @@ export {
   BSC_RPC_ENDPOINTS,
   BSC_CHAIN_ID,
   BSC_VAULTS_ENDPOINT,
+  CELO_RPC,
+  CELO_CHAIN_ID,
+  CELO_VAULTS_ENDPOINT,
   HECO_RPC,
   HECO_CHAIN_ID,
   HECO_VAULTS_ENDPOINT,
