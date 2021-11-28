@@ -1,5 +1,6 @@
 const { ethers } = require('ethers');
 const { MULTICHAIN_RPC } = require('../constants');
+
 import { ChainId } from '../../packages/address-book/address-book';
 
 const MULTICALLS = {
@@ -10,6 +11,7 @@ const MULTICALLS = {
   avax: '0x5135C0af3080DF01ABF66491d5a1eD21fBEF3a7C',
   one: '0x4980548079A98e13F9507b5e2084FC6feFB8e086',
   arbitrum: '0x8a198BCbF313A5565c64A7Ed61FaA413eB4E0931',
+  celo: '0xfacA58Fe3bB1B3c953233031b82029F901c727f8', // TODO
 };
 const BATCH_SIZE = 128;
 

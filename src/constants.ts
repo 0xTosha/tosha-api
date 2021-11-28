@@ -1,4 +1,6 @@
 import { ChainId } from '../packages/address-book/address-book';
+import { celoPools } from '../src/celopools';
+import { fromUnixTime } from 'date-fns';
 
 const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:3000';
 
@@ -35,7 +37,7 @@ const BSC_RPC_ENDPOINTS = CUSTOM_BSC_RPC_ENDPOINTS.length
   : MAINNET_BSC_RPC_ENDPOINTS;
 
 const BSC_RPC = BSC_RPC_ENDPOINTS[0];
-const CELO_RPC = process.env.CELO_RPC || 'https://alfajores-forno.celo-testnet.org';
+const CELO_RPC = process.env.CELO_RPC || 'https://forno.celo.org';
 const HECO_RPC = process.env.HECO_RPC || 'https://http-mainnet.hecochain.com';
 const AVAX_RPC = process.env.AVAX_RPC || 'https://api.avax.network/ext/bc/C/rpc';
 const POLYGON_RPC = process.env.POLYGON_RPC || 'https://rpc-mainnet.maticvigil.com/';
@@ -72,8 +74,8 @@ const MULTICHAIN_RPC: Record<ChainId, string> = {
   [ChainId.arbitrum]: ARBITRUM_RPC,
 };
 // TODO: Change Chain ID to prod and following URL to prod/master branch
-const CELO_VAULTS_ENDPOINT =
-  'https://raw.githubusercontent.com/0xtosha/tosha-app/DEV/src/features/configure/vault/celo_pools.js';
+const CELO_VAULTS_ENDPOINT = celoPools;
+  // 'https://raw.githubusercontent.com/0xtosha/tosha-app/DEV/src/features/configure/vault/celo_pools.js';
 const BSC_VAULTS_ENDPOINT =
   'https://raw.githubusercontent.com/beefyfinance/beefy-app/prod/src/features/configure/vault/bsc_pools.js';
 const HECO_VAULTS_ENDPOINT =
@@ -91,13 +93,13 @@ const ARBITRUM_VAULTS_ENDPOINT =
 
 const MULTICHAIN_ENDPOINTS = {
   celo: CELO_VAULTS_ENDPOINT,
-  bsc: BSC_VAULTS_ENDPOINT,
-  heco: HECO_VAULTS_ENDPOINT,
-  avax: AVAX_VAULTS_ENDPOINT,
-  polygon: POLYGON_VAULTS_ENDPOINT,
-  fantom: FANTOM_VAULTS_ENDPOINT,
-  one: ONE_VAULTS_ENDPOINT,
-  arbitrum: ARBITRUM_VAULTS_ENDPOINT,
+  // bsc: BSC_VAULTS_ENDPOINT,
+  // heco: HECO_VAULTS_ENDPOINT,
+  // avax: AVAX_VAULTS_ENDPOINT,
+  // polygon: POLYGON_VAULTS_ENDPOINT,
+  // fantom: FANTOM_VAULTS_ENDPOINT,
+  // one: ONE_VAULTS_ENDPOINT,
+  // arbitrum: ARBITRUM_VAULTS_ENDPOINT,
 };
 
 const BEEFY_PERFORMANCE_FEE = 0.045;

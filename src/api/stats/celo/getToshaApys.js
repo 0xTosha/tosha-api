@@ -3,7 +3,7 @@ import Web3 from 'web3';
 
 // const { bscWeb3: web3 } = require('../../../../utils/web3');
 
-const f1 = new Web3.providers.HttpProvider('https://alfajores-forno.celo-testnet.org/', {
+const f1 = new Web3.providers.HttpProvider('https://forno.celo.org', {
   keepAlive: true,
   timeout: 10000,
 });
@@ -532,10 +532,10 @@ const DAILY_HPY = 365;
 
 // const { compound } = require('../../../utils/compound');
 
-const farm = '0x5A50ABc9A7ba04B0e4fE1334F126f41261A4d5F1';
-const strat = '0x5b3744C53114d114e73f2F81e8DDC65e650C86ec';
+const farm = '0xA44055d76Aa4432479fB12505d599b3176431C2b';
+const strat = '0x79a90A352F53ADd92063Cbf1db04B4ab6314FfF5';
 const DECIMALS = '1e18';
-const POOL_NAME = 'TOSHA';
+const POOL_NAME = 'ALPHABETA';
 const toshaPerformanceFee = 0.03;
 const shareAfterToshaPerformanceFee = 1 - toshaPerformanceFee;
 
@@ -546,8 +546,8 @@ const getToshaApys = async () => {
   const vaultApr = simpleApr.times(shareAfterToshaPerformanceFee);
   const vaultApy = compound(vaultApr, DAILY_HPY, 1, 1);
 
-  // console.log(vaultApr.toString());
-  // console.log(vaultApy.toString());
+   console.log(vaultApr.toString());
+   console.log(vaultApy.toString());
 
   const apys = { [POOL_NAME]: vaultApy };
 

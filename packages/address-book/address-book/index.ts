@@ -1,13 +1,14 @@
-import { polygon } from './polygon';
-import { bsc } from './bsc';
-import { avax } from './avax';
-import { fantom } from './fantom';
-import { heco } from './heco';
-import { one } from './one';
-import { arbitrum } from './arbitrum';
 import Chain from '../types/chain';
 import { ChainId } from '../types/chainid';
 import { ConstRecord } from '../types/const';
+import { arbitrum } from './arbitrum';
+import { avax } from './avax';
+import { bsc } from './bsc';
+import { celo } from './celo';
+import { fantom } from './fantom';
+import { heco } from './heco';
+import { one } from './one';
+import { polygon } from './polygon';
 
 export * from '../types/chainid';
 
@@ -19,6 +20,7 @@ const _addressBook = {
   heco,
   one,
   arbitrum,
+  celo,
 } as const;
 
 const _addressBookByChainId = {
@@ -29,6 +31,7 @@ const _addressBookByChainId = {
   [ChainId.heco]: heco,
   [ChainId.one]: one,
   [ChainId.arbitrum]: arbitrum,
+  [ChainId.celo]: celo,
 } as const;
 
 export const addressBook: ConstRecord<typeof _addressBook, Chain> = _addressBook;

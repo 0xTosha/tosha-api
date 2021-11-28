@@ -1,32 +1,34 @@
 'use strict';
 
+import getAlpacaIbPrices from './bsc/alpaca/getAlpacaIbPrices';
 import getBeltPrices from './bsc/belt/getBeltPrices';
+import getCurveArbitrumPrices from './arbitrum/getCurvePrices';
+import getCurveFantomPrices from './fantom/getCurvePrices';
+import getCurvePolygonPrices from './matic/getCurvePrices';
+import getDopplePrices from './bsc/dopple/getDopplePrices';
 import getEllipsisPrices from './bsc/ellipsis/getEllipsisPrices';
-import getSnob3PoolPrice from './avax/getSnob3PoolPrice';
 import getFroyoPrices from './fantom/getFroyoPrices';
 import getGondolaPrices from './avax/getGondolaPrices';
-import getCurvePolygonPrices from './matic/getCurvePrices';
-import getCurveFantomPrices from './fantom/getCurvePrices';
-import getDopplePrices from './bsc/dopple/getDopplePrices';
 import getIronSwapPrices from './matic/getIronSwapPrices';
-import getAlpacaIbPrices from './bsc/alpaca/getAlpacaIbPrices';
-import getCurveArbitrumPrices from './arbitrum/getCurvePrices';
+import getSnob3PoolPrice from './avax/getSnob3PoolPrice';
+import getToshaPrices from './celo/getToshaPrices';
 
 const getNonAmmPrices = async tokenPrices => {
   let prices = {};
 
   const promises = [
-    getBeltPrices(tokenPrices),
-    getEllipsisPrices(),
-    getSnob3PoolPrice(),
-    getFroyoPrices(),
-    getGondolaPrices(tokenPrices),
-    getCurvePolygonPrices(tokenPrices),
-    getCurveFantomPrices(tokenPrices),
-    getCurveArbitrumPrices(tokenPrices),
-    getDopplePrices(),
-    getIronSwapPrices(),
-    getAlpacaIbPrices(tokenPrices),
+    // getBeltPrices(tokenPrices),
+    // getEllipsisPrices(),
+    // getSnob3PoolPrice(),
+    // getFroyoPrices(),
+    // getGondolaPrices(tokenPrices),
+    getToshaPrices(tokenPrices),
+    // getCurvePolygonPrices(tokenPrices),
+    // getCurveFantomPrices(tokenPrices),
+    // getCurveArbitrumPrices(tokenPrices),
+    // getDopplePrices(),
+    // getIronSwapPrices(),
+    // getAlpacaIbPrices(tokenPrices),
   ];
 
   // Setup error logs
@@ -37,6 +39,8 @@ const getNonAmmPrices = async tokenPrices => {
   results
     .filter((r): r is PromiseFulfilledResult<any> => r.status === 'fulfilled')
     .forEach(r => {
+      console.log('NON AMM PRICES');
+      console.log(r);
       Object.assign(prices, r.value);
     });
 

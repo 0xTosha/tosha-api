@@ -8,5 +8,5 @@ if git diff --cached --name-only | grep --quiet "$SRC_PATTERN"
 then
     cd packages/address-book
     # yarn lint-staged
-    yarn checksum
+    # yarn checksum
 fi

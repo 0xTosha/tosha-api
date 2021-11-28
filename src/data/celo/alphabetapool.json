@@ -1,0 +1,13 @@
+[{
+  "name": "ALPHABETA",
+  "poolId": 0,
+  "address": "0x2C9F82812D44C3f996d56FB3cc8AAd72b95576cF",
+  "decimals": "1e18",
+  "oracle": "lps",
+  "oracleId": "ALPHABETA",
+  "swap": {
+    "address": "0x765DE816845861e75A25fCA122bb6898B8B1282a",
+    "oracle": "tokens",
+    "oracleId": "cUSD"
+  }
+}]

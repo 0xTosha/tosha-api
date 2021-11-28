@@ -44,7 +44,12 @@ const calcLpPrice = (pool, tokenPrices) => {
 };
 
 const fetchAmmPrices = async (pools, knownPrices) => {
+  console.log('FETCHAMMPRICES');
+  console.log(pools);
+  console.log(knownPrices);
+
   let prices = { ...knownPrices };
+
   let lps = {};
   let weights = {};
   Object.keys(knownPrices).forEach(known => {

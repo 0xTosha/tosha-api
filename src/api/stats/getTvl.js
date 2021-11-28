@@ -18,6 +18,9 @@ const {
 
   ONE_CHAIN_ID,
   ONE_VAULTS_ENDPOINT,
+
+  CELO_CHAIN_ID,
+  CELO_VAULTS_ENDPOINT,
   
   ARBITRUM_CHAIN_ID,
   ARBITRUM_VAULTS_ENDPOINT
@@ -29,34 +32,11 @@ const REFRESH_INTERVAL = 15 * 60 * 1000;
 let tvl = {};
 
 const chains = [
+  
   {
-    chainId: BSC_CHAIN_ID,
-    vaultsEndpoint: BSC_VAULTS_ENDPOINT,
-  },
-  {
-    chainId: POLYGON_CHAIN_ID,
-    vaultsEndpoint: POLYGON_VAULTS_ENDPOINT,
-  },
-  {
-    chainId: FANTOM_CHAIN_ID,
-    vaultsEndpoint: FANTOM_VAULTS_ENDPOINT,
-  },
-  {
-    chainId: HECO_CHAIN_ID,
-    vaultsEndpoint: HECO_VAULTS_ENDPOINT,
-  },
-  {
-    chainId: AVAX_CHAIN_ID,
-    vaultsEndpoint: AVAX_VAULTS_ENDPOINT,
-  },
-  {
-    chainId: ONE_CHAIN_ID,
-    vaultsEndpoint: ONE_VAULTS_ENDPOINT,
-  },
-  {
-    chainId: ARBITRUM_CHAIN_ID,
-    vaultsEndpoint: ARBITRUM_VAULTS_ENDPOINT,
-  },
+    chainId: CELO_CHAIN_ID,
+    vaultsEndpoint: CELO_VAULTS_ENDPOINT,
+  }, 
 ];
 
 const getTvl = () => {
