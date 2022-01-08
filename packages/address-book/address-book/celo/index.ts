@@ -1,13 +1,15 @@
-import { beefyfinance } from './platforms/beefyfinance';
-import { sushiCelo } from './platforms/sushiCelo';
-import { tokens } from './tokens/tokens';
-import { convertSymbolTokenMapToAddressTokenMap } from '../../util/convertSymbolTokenMapToAddressTokenMap';
 import Chain from '../../types/chain';
 import { ConstInterface } from '../../types/const';
+import { beefyfinance } from './platforms/beefyfinance';
+import { convertSymbolTokenMapToAddressTokenMap } from '../../util/convertSymbolTokenMapToAddressTokenMap';
+import { sushiCelo } from './platforms/sushiCelo';
+import { tokens } from './tokens/tokens';
+import { toshafinance } from './platforms/toshafinance';
 
 const _celo = {
   platforms: {
     beefyfinance,
+    toshafinance,
     sushiCelo,
   },
   tokens,

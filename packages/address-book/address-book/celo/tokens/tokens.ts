@@ -47,6 +47,17 @@ const _tokens = {
     logoURI:
       'https://raw.githubusercontent.com/beefyfinance/beefy-app/prod/src/images/single-assets/BIFI.png',
   },
+  ORANGE: {
+    chainId: 42220,
+    address: '0xd2aC99BaFC5CeB9b0295fB4ff23Ec2592a90113d',
+    decimals: 18,
+    name: 'orange',
+    symbol: 'ORA',
+    website: 'https://www.beefy.finance/',
+    description:
+      'ORANGE is a Decentralized, Multi-Chain Yield Optimizer platform that allows its users to earn compound interest on their crypto holdings.',
+    logoURI: 'https://raw.githubusercontent.com/0xTosha/tosha-app/blob/DEV/src/images/logot.png',
+  },
   cUSD: {
     name: 'Celo Dollar',
     symbol: 'cUSD',

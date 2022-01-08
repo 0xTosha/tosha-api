@@ -1,11 +1,15 @@
 const { getCeloBifiGovApy } = require('./getCeloBifiGovApy');
 const { getCeloBifiMaxiApy } = require('./getCeloBifiMaxiApy');
+const { getCeloOrangeGovApy } = require('./getCeloOrangeGovApy');
+const { getCeloOrangeMaxiApy } = require('./getCeloOrangeMaxiApy');
 const { getSushiCeloApys } = require('./getSushiCeloApys');
 
 const getApys = [
   getSushiCeloApys,
   getCeloBifiGovApy,
-  getCeloBifiMaxiApy
+  getCeloBifiMaxiApy,
+  getCeloOrangeGovApy,
+  getCeloOrangeMaxiApy,
 ];
 
 const getCeloApys = async () => {
