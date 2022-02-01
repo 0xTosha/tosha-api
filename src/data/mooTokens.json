@@ -14,5 +14,13 @@
     "chainId": 56,
     "oracle": "tokens",
     "oracleId": "NFTY"
+  },
+  {
+    "name": "Orange",
+    "address": "0x50359e800aCde1D93BB673E235Bafb86D0846c14",
+    "decimals": "1e18",
+    "chainId": 42220,
+    "oracle": "tokens",
+    "oracleId": "ORANGE"
   }
 ]

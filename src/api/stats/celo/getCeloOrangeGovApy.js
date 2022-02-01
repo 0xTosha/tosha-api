@@ -1,14 +1,14 @@
 const BigNumber = require('bignumber.js');
 const { celoWeb3: web3, web3Factory } = require('../../../utils/web3');
 
-const IRewardPool = require('../../../abis/IRewardPool.json');
+const IRewardPool = require('../../../abis/IRewardPoolORA.json');
 const fetchPrice = require('../../../utils/fetchPrice');
 const ERC20 = require('../../../abis/ERC20.json');
 
-const ORANGE = '0xd2aC99BaFC5CeB9b0295fB4ff23Ec2592a90113d'; //0x639A647fbe20b6c8ac19E48E2de44ea792c62c5C';
-const REWARDS = '0xed5e9bE145Ea11772Fed7F3ef2e8D03Fd62a040a'; // '0x2D250016E3621CfC50A0ff7e5f6E34bbC6bfE50E';
+const ORANGE = '0x50359e800aCde1D93BB673E235Bafb86D0846c14'; //0x639A647fbe20b6c8ac19E48E2de44ea792c62c5C';
+const REWARDS = '0x45851e9fE54F052a375865b3A8920a56FFb0C00E'; // '0x2D250016E3621CfC50A0ff7e5f6E34bbC6bfE50E';
 const ORACLE = 'tokens';
-const ORACLE_ID = 'ORA';
+const ORACLE_ID = 'ORANGE';
 const DECIMALS = '1e18';
 const BLOCKS_PER_DAY = 28800;
 
@@ -48,8 +48,10 @@ const getTotalStakedInUsd = async () => {
 
   const tokenContract = new web3.eth.Contract(ERC20, ORANGE);
   const totalStaked = new BigNumber(await tokenContract.methods.balanceOf(REWARDS).call());
+  console.log(totalStaked); // BigNumber { s: 1, e: 21, c: [ 10000000 ] }
   console.log('getTotalStakedInUsd>>>>>>>>>');
   const tokenPrice = await fetchPrice({ oracle: ORACLE, id: ORACLE_ID });
+  console.log(tokenPrice);
 
   return totalStaked.times(tokenPrice).dividedBy(DECIMALS);
 };

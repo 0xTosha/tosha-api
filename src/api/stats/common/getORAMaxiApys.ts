@@ -11,7 +11,7 @@ const ERC20 = require('../../../abis/ERC20.json');
 const secondsPerYear = 31536000;
 
 interface ORAApyParams {
-  ora: string; // address
+  orange: string; // address
   rewardPool: string; // address
   rewardId: string; // address
   rewardDecimals: string; // 1e18
@@ -27,7 +27,7 @@ export const getORAMaxiApys = async (params: ORAApyParams) => {
   console.log('SIMPLEAPY');
   const simpleApy = yearlyRewardsInUsd.dividedBy(totalStakedInUsd);
   console.log(simpleApy);
-  const apy = compound(simpleApy, DAILY_HPY, 1, 0.9995);
+  const apy = compound(simpleApy, DAILY_HPY, 1, 0.9995); // TODO:
   console.log(apy);
 
   return { [params.chain + '-orange-maxi']: apy };
@@ -51,14 +51,16 @@ const getYearlyRewardsInUsd = async (params: ORAApyParams) => {
 };
 
 const getTotalStakedInUsd = async (params: ORAApyParams) => {
-  const tokenContract = new params.web3.eth.Contract(ERC20, params.ora);
+  const tokenContract = new params.web3.eth.Contract(ERC20, params.orange);
   console.log('TOKEN CONTRACT');
 
   const totalStaked = new BigNumber(
     await tokenContract.methods.balanceOf(params.rewardPool).call()
   );
   console.log(totalStaked);
-  const tokenPrice = await fetchPrice({ oracle: 'tokens', id: 'BIFI' });
+  const tokenPrice = await fetchPrice({ oracle: 'tokens', id: 'ORANGE' });
+  console.log('TOKEN PRICE');
+  console.log(tokenPrice);
 
   return totalStaked.times(tokenPrice).dividedBy('1e18');
 };

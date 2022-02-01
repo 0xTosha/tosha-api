@@ -7,7 +7,7 @@ export const toshafinance = {
   rewarder: cowllector,
   treasurer: '0x3Eb7fB70C03eC4AEEC97C6C6C1B59B014600b7F7',
   launchpoolOwner: cowllector,
-  rewardPool: '0xed5e9bE145Ea11772Fed7F3ef2e8D03Fd62a040a', // '0x2D250016E3621CfC50A0ff7e5f6E34bbC6bfE50E',
+  rewardPool: '0x45851e9fE54F052a375865b3A8920a56FFb0C00E', //0x32F3af63798031147C3d441f75562adBe5C7c448', // '0x2D250016E3621CfC50A0ff7e5f6E34bbC6bfE50E',
   treasury: '0xd9F2Da642FAA1307e4F70a5E3aC31b9bfe920eAF',
   beefyFeeRecipient: '0x32C82EE8Fca98ce5114D2060c5715AEc714152FB',
   multicall: '0xa9E6E271b27b20F65394914f8784B3B860dBd259',

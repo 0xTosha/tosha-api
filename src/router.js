@@ -17,20 +17,19 @@ router.get('/apy', stats.apy);
 router.get('/apy/breakdown', stats.apyBreakdowns);
 router.get('/bifibuyback', bifibuyback);
 
-router.get('/tvl', tvl.vaultTvl);
-router.get('/cmc', cmc.vaults);
+//router.get('/tvl', tvl.vaultTvl);
+//router.get('/cmc', cmc.vaults);
 
-router.get('/supply', supply.supply);
-router.get('/supply/total', supply.total);
-router.get('/supply/circulating', supply.circulating);
+//router.get('/supply', supply.supply);
+//router.get('/supply/total', supply.total);
+//router.get('/supply/circulating', supply.circulating);
 
-router.get('/earnings', gov.earnings);
-router.get('/holders', gov.holderCount);
+//router.get('/earnings', gov.earnings);
+//router.get('/holders', gov.holderCount);
 
-router.get('/lps', price.lpsPrices);
+//router.get('/lps', price.lpsPrices);
 router.get('/prices', price.tokenPrices);
-
-router.get('/vaults', multichainVaults.multichainVaults);
+// router.get('/vaults', multichainVaults.multichainVaults);
 
 router.get('/', noop);
 

@@ -105,6 +105,7 @@ import oldPools from '../../data/archive/oldLpPools.json';
 import olivePools from '../../data/avax/oliveLpPools.json';
 import omnifarmPools from '../../data/degens/omnifarmLpPools.json';
 import ooePools from '../../data/ooeLpPools.json';
+import ora from '../../data/celo/orangePool.json';
 import pacocaPools from '../../data/degens/pacocaLpPools.json';
 import pangolinPools from '../../data/avax/pangolinLpPools.json';
 import pantherPools from '../../data/degens/pantherLpPools.json';
@@ -201,6 +202,7 @@ const pools = [
   // ...fusefiPools,
   // ...popsicleFantomPools,
   ...sushiv2Celo,
+  // ...ora,
   // ...liquidusPools,
   // ...biswapPools,
   // ...solarbeamDualLpV2Pools,
@@ -462,7 +464,6 @@ export const getAmmTokenPrice = async tokenSymbol => {
   if (tokenPrices.hasOwnProperty(tokenSymbol)) {
     return tokenPrices[tokenSymbol];
   }
-  console.log('ETHE');
   console.error(`Unknown token '${tokenSymbol}'. Consider adding it to .json file`);
 };
 

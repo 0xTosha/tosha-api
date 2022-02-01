@@ -49,10 +49,10 @@ const _tokens = {
   },
   ORANGE: {
     chainId: 42220,
-    address: '0xd2aC99BaFC5CeB9b0295fB4ff23Ec2592a90113d',
+    address: '0x50359e800aCde1D93BB673E235Bafb86D0846c14',
     decimals: 18,
     name: 'orange',
-    symbol: 'ORA',
+    symbol: 'ORANGE',
     website: 'https://www.beefy.finance/',
     description:
       'ORANGE is a Decentralized, Multi-Chain Yield Optimizer platform that allows its users to earn compound interest on their crypto holdings.',

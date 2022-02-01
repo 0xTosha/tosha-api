@@ -16,10 +16,10 @@ const {
 
 export const getCeloOrangeMaxiApy = () => {
   return getORAMaxiApys({
-    ora: ORANGE.address,
+    orange: ORANGE.address,
     rewardPool: rewardPool,
-    rewardId: CELO.symbol, // TBC
-    rewardDecimals: getEDecimals(CELO.decimals),
+    rewardId: ORANGE.symbol, // TBC
+    rewardDecimals: getEDecimals(ORANGE.decimals),
     chain: 'celo',
     web3: web3,
   });

@@ -116,16 +116,16 @@ const CRONOS_VAULTS_ENDPOINT =
 //  'https://raw.githubusercontent.com/beefyfinance/beefy-app/prod/src/features/configure/vault/fuse_pools.js';
 
 const MULTICHAIN_ENDPOINTS = {
-  bsc: BSC_VAULTS_ENDPOINT,
-  heco: HECO_VAULTS_ENDPOINT,
-  avax: AVAX_VAULTS_ENDPOINT,
-  polygon: POLYGON_VAULTS_ENDPOINT,
-  fantom: FANTOM_VAULTS_ENDPOINT,
-  one: ONE_VAULTS_ENDPOINT,
-  arbitrum: ARBITRUM_VAULTS_ENDPOINT,
+  // bsc: BSC_VAULTS_ENDPOINT,
+  // heco: HECO_VAULTS_ENDPOINT,
+  // avax: AVAX_VAULTS_ENDPOINT,
+  // polygon: POLYGON_VAULTS_ENDPOINT,
+  // fantom: FANTOM_VAULTS_ENDPOINT,
+  // one: ONE_VAULTS_ENDPOINT,
+  // arbitrum: ARBITRUM_VAULTS_ENDPOINT,
   celo: CELO_VAULTS_ENDPOINT,
-  moonriver: MOONRIVER_VAULTS_ENDPOINT,
-  cronos: CRONOS_VAULTS_ENDPOINT,
+  // moonriver: MOONRIVER_VAULTS_ENDPOINT,
+  // cronos: CRONOS_VAULTS_ENDPOINT,
   // aurora: AURORA_VAULTS_ENDPOINT,
   // fuse: FUSE_VAULTS_ENDPOINT,
 };
