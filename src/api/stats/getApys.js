@@ -52,8 +52,8 @@ const updateApys = async () => {
       // Set default APY values
       let mappedApyValues = result.value;
       let mappedApyBreakdownValues = {};
-      console.log('><><><><><><><><><><');
-      console.log(result);
+      // console.log('><><><><><><><><><><');
+      // console.log(result);
 
       // Loop through key values and move default breakdown format
       // To require totalApy key
