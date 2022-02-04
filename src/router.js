@@ -27,7 +27,7 @@ router.get('/bifibuyback', bifibuyback);
 //router.get('/earnings', gov.earnings);
 //router.get('/holders', gov.holderCount);
 
-//router.get('/lps', price.lpsPrices);
+router.get('/lps', price.lpsPrices);
 router.get('/prices', price.tokenPrices);
 // router.get('/vaults', multichainVaults.multichainVaults);
 
