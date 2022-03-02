@@ -56,4 +56,4 @@ const getTotalStakedInUsd = async () => {
   return totalStaked.times(tokenPrice).dividedBy(DECIMALS);
 };
 
-module.exports = { getCeloOrangeGovApy };
+module.exports = { getCeloOrangeGovApy, getTotalStakedInUsd, getYearlyRewardsInUsd };

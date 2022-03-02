@@ -1,7 +1,10 @@
 import BigNumber from 'bignumber.js';
 
 import { getFarmWithTradingFeesApy } from '../../../utils/getFarmWithTradingFeesApy';
+import { getTotalStakedInUsd, getYearlyRewardsInUsd } from '../celo/getCeloOrangeGovApy';
+
 import { compound } from '../../../utils/compound';
+const { DAILY_HPY } = require('../../../constants');
 
 import { BASE_HPY, BEEFY_PERFORMANCE_FEE, SHARE_AFTER_PERFORMANCE_FEE } from '../../../constants';
 
@@ -13,6 +16,8 @@ export interface ApyBreakdown {
   lpFee?: number;
   tradingApr?: number;
   totalApy?: number;
+  toshaApr?: number;
+  toshaApy?: number;
 }
 
 export interface ApyBreakdownResult {
@@ -32,11 +37,16 @@ export const getApyBreakdown = (
     apyBreakdowns: {},
   };
 
-  pools.forEach((pool, i) => {
+  pools.forEach(async (pool, i) => {
     const simpleApr = farmAprs[i]?.toNumber();
     const vaultApr = simpleApr * SHARE_AFTER_PERFORMANCE_FEE;
     const vaultApy = compound(simpleApr, BASE_HPY, 1, SHARE_AFTER_PERFORMANCE_FEE);
     const tradingApr: number | undefined = tradingAprs[pool.address.toLowerCase()]?.toNumber();
+    const yearlyRewardsInUsd = await getYearlyRewardsInUsd();
+    const totalStakedInUsd = await getTotalStakedInUsd();
+    const toshaApr = yearlyRewardsInUsd.dividedBy(totalStakedInUsd);
+    const toshaApy = compound(toshaApr, DAILY_HPY, 1, 0.9995);
+
     const totalApy = getFarmWithTradingFeesApy(
       simpleApr,
       tradingApr,
@@ -55,6 +65,8 @@ export const getApyBreakdown = (
       lpFee: providerFee,
       tradingApr: tradingApr,
       totalApy: totalApy,
+      toshaApr: toshaApr,
+      toshaApy: toshaApy,
     };
   });
 
