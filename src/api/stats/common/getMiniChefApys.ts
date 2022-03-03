@@ -19,6 +19,9 @@ import SushiComplexRewarderTime from '../../../abis/matic/SushiComplexRewarderTi
 import ERC20 from '../../../abis/ERC20.json';
 import { Contract } from 'web3-eth-contract';
 import { AbiItem } from 'web3-utils';
+import { getTotalStakedInUsd, getYearlyRewardsInUsd } from '../celo/getCeloOrangeGovApy';
+import { compound } from '../../../utils/compound';
+import { DAILY_HPY } from '../../../constants';
 
 const oracle = 'tokens';
 const DECIMALS = '1e18';
@@ -57,7 +60,12 @@ export const getMiniChefApys = async (params: MiniChefApyParams) => {
       : {};
   const farmApys = await getFarmApys(params);
 
-  return getApyBreakdown(pools, tradingAprs, farmApys, SUSHI_LPF);
+  const yearlyRewardsInUsd = await getYearlyRewardsInUsd();
+  const totalStakedInUsd = await getTotalStakedInUsd();
+  const toshaApr = yearlyRewardsInUsd.dividedBy(totalStakedInUsd);
+  const toshaApy = compound(toshaApr, DAILY_HPY, 1, 0.9995);
+
+  return await getApyBreakdown(pools, tradingAprs, farmApys, SUSHI_LPF, toshaApr, toshaApy);
 };
 
 const getFarmApys = async (params: MiniChefApyParams) => {
