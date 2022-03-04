@@ -1,8 +1,13 @@
-import { BASE_HPY, BEEFY_PERFORMANCE_FEE, SHARE_AFTER_PERFORMANCE_FEE } from '../../../constants';
+import {
+  BASE_HPY,
+  BEEFY_PERFORMANCE_FEE,
+  DAILY_HPY,
+  SHARE_AFTER_PERFORMANCE_FEE,
+} from '../../../constants';
 
 import BigNumber from 'bignumber.js';
 import { compound } from '../../../utils/compound';
-import { getFarmWithTradingFeesApy } from '../../../utils/getFarmWithTradingFeesApy';
+import { getTotalApy } from '../../../utils/getTotalApy';
 
 export interface ApyBreakdown {
   vaultApr?: number;
@@ -40,14 +45,14 @@ export const getApyBreakdown = (
     const vaultApr = simpleApr * SHARE_AFTER_PERFORMANCE_FEE;
     const vaultApy = compound(simpleApr, BASE_HPY, 1, SHARE_AFTER_PERFORMANCE_FEE);
     const tradingApr: number | undefined = tradingAprs[pool.address.toLowerCase()]?.toNumber();
-    const totalApy = getFarmWithTradingFeesApy(
+
+    const totalApy = getTotalApy(
       simpleApr,
+      toshaApr,
       tradingApr,
-      BASE_HPY,
-      1,
+      DAILY_HPY,
       SHARE_AFTER_PERFORMANCE_FEE
     );
-
     // Add token to APYs object
     result.apys[pool.name] = totalApy;
     result.apyBreakdowns[pool.name] = {

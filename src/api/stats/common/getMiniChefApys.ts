@@ -62,7 +62,7 @@ export const getMiniChefApys = async (params: MiniChefApyParams) => {
 
   const yearlyRewardsInUsd = await getYearlyRewardsInUsd();
   const totalStakedInUsd = await getTotalStakedInUsd();
-  const toshaApr = yearlyRewardsInUsd.dividedBy(totalStakedInUsd);
+  const toshaApr = yearlyRewardsInUsd.dividedBy(totalStakedInUsd).dividedBy(100);
   const toshaApy = compound(toshaApr, DAILY_HPY, 1, 0.9995);
 
   return await getApyBreakdown(pools, tradingAprs, farmApys, SUSHI_LPF, toshaApr, toshaApy);
