@@ -1,6 +1,5 @@
 const getLydLpApys = require('./getLydLpApys');
 const getOliveApys = require('./getOliveApys');
-const getPangolinApys = require('./getPangolinLpApys');
 const getAvaxBifiGovApy = require('./getAvaxBifiGovApy');
 const { getAvaxBifiMaxiApy } = require('./getAvaxBifiMaxiApy');
 const getJoeApys = require('./getJoeLpApys');
@@ -13,15 +12,20 @@ const getSingularApys = require('./getSingularApys');
 const getBlizzLpApys = require('./getBlizzLpApys');
 const getBlizzLendingApys = require('./getBlizzLendingApys');
 const getBankerJoeApys = require('./getBankerJoeApys');
+const getPangolinV2DualApys = require('./getPangolinV2DualApys');
 import { getSynapseApys } from './getSynapseApys';
+const getGrapeApys = require('./getGrapeApys');
+const getRipaeApys = require('./getRipaeApys');
 
 const getSpellApys = require('./getSpellApys');
 import { getMaiApys } from './getMaiApys';
 import getMaiCurveApys from './getMaiCurveApys';
+import { getPangolinV2Apys } from './getPangolinV2Apys';
 
 const getApys = [
+  getPangolinV2Apys,
+  getPangolinV2DualApys,
   getLydLpApys,
-  getPangolinApys,
   getPangolinPNGApy,
   getOliveApys,
   getAvaxBifiGovApy,
@@ -39,6 +43,8 @@ const getApys = [
   getSpellApys,
   getMaiApys,
   getMaiCurveApys,
+  getGrapeApys,
+  getRipaeApys,
 ];
 
 const getAvaxApys = async () => {

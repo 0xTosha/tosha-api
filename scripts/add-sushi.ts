@@ -5,6 +5,18 @@ const {
   polygon: {
     platforms: { sushi: sushiPolygon },
   },
+  avax: {
+    platforms: { pangolin: pangolin },
+  },
+  fantom: {
+    platforms: { sushiFtm: sushiFtm },
+  },
+  fuse: {
+    platforms: { sushiFuse: sushiFuse },
+  },
+  aurora: {
+    platforms: { trisolaris: tri },
+  },
 } = addressBook;
 
 const yargs = require('yargs');
@@ -38,6 +50,26 @@ const projects = {
     prefix: 'sushi',
     file: '../src/data/matic/sushiLpPools.json',
     masterchef: sushiPolygon.minichef,
+  },
+  pangolin: {
+    prefix: 'png',
+    file: '../src/data/avax/pangolinv2LpPools.json',
+    masterchef: pangolin.minichef,
+  },
+  sushiFtm: {
+    prefix: 'sushi',
+    file: '../src/data/fantom/sushiFtmLpPools.json',
+    masterchef: sushiFtm.minichef,
+  },
+  sushiFuse: {
+    prefix: 'sushi',
+    file: '../src/data/fuse/sushiFuseLpPools.json',
+    masterchef: sushiFuse.minichef,
+  },
+  tri: {
+    prefix: 'tri',
+    file: '../src/data/aurora/trisolarisMiniLpPools.json',
+    masterchef: tri.minichef,
   },
 };
 

@@ -20,7 +20,7 @@ const _tokens = {
   BIFI: {
     name: 'Beefy.Finance',
     symbol: 'BIFI',
-    address: '0x99C409E5f62E4bd2AC142f17caFb6810B8F0BAAE',
+    address: '0x2bF9b864cdc97b08B6D79ad4663e71B8aB65c45c',
     chainId: 122,
     decimals: 18,
     website: 'https://www.beefy.finance/',
@@ -28,6 +28,28 @@ const _tokens = {
       'Beefy Finance is a Decentralized, Multi-Chain Yield Optimizer platform that allows its users to earn compound interest on their crypto holdings.',
     logoURI:
       'https://raw.githubusercontent.com/beefyfinance/beefy-app/prod/src/images/single-assets/BIFI.png',
+  },
+  atUST: {
+    name: 'UST Terra',
+    symbol: 'atUST',
+    address: '0x0D58a44be3dCA0aB449965dcc2c46932547Fea2f',
+    chainId: 122,
+    decimals: 18,
+    logoURI: '',
+    website: 'https://www.terra.money/',
+    description:
+      'Terra is a public blockchain protocol deploying a suite of algorithmic decentralized stablecoins which underpin a thriving ecosystem that brings DeFi to the masses.',
+  },
+  atLUNA: {
+    name: 'Luna Terra',
+    symbol: 'atUST',
+    address: '0x588e24DEd8f850b14BB2e62E9c50A7Cd5Ee13Da9',
+    chainId: 122,
+    decimals: 18,
+    logoURI: '',
+    website: 'https://www.terra.money/',
+    description:
+      'The Terra protocols native staking token that absorbs the price volatility of Terra. Luna is used for governance and in mining. Users stake Luna to validators who record and verify transactions on the blockchain in exchange for rewards from transaction fees. The more Terra is used, the more Luna is worth.',
   },
   WETH: {
     name: 'Wrapped Ether on Fuse',
@@ -94,6 +116,17 @@ const _tokens = {
     description:
       'USDC is a fully collateralized US dollar stablecoin. USDC is issued by regulated financial institutions, backed by fully reserved assets, redeemable on a 1:1 basis for US dollars.',
   },
+  ELON: {
+    name: 'Dogelon on Fuse',
+    symbol: 'ELON',
+    address: '0x5DD8015cec49F4dB01fd228F688BF30337d3e0A9',
+    chainId: 122,
+    decimals: 18,
+    logoURI: '',
+    website: 'https://dogelonmars.com/',
+    description:
+      'Dogelon Mars is a dog-themed meme coin. Its name is a mixture of Dogecoin and Elon Musk, the billionaire entrepreneur who is an outspoken supporter of Doge.',
+  },
   G: {
     name: 'GoodDollar',
     symbol: 'G$',
@@ -104,6 +137,29 @@ const _tokens = {
     website: 'https://www.gooddollar.org/',
     description:
       'The GoodDollar protocol is a community-driven, distributed framework designed to generate, fund, and distribute global basic income via the GoodDollar token (hereafter “G$”). G$ is an ERC-20 digital asset built on the Ethereum blockchain that operates within the emerging ecosystem of decentralized and open finance. GoodDollar leverages new protocols and smart contracts across the ecosystem to deliver its basic income economy.',
+  },
+  SUSHI: {
+    name: 'SushiToken on Fuse',
+    symbol: 'SUSHI',
+    address: '0x90708b20ccC1eb95a4FA7C8b18Fd2C22a0Ff9E78',
+    chainId: 122,
+    decimals: 18,
+    logoURI:
+      'https://pancakeswap.finance/images/tokens/0x90708b20ccC1eb95a4FA7C8b18Fd2C22a0Ff9E78.svg',
+    website: 'https://sushi.com/',
+    description:
+      'Sushi is the home of DeFi. Their community is building a comprehensive, decentralized trading platform for the future of finance. Swap, earn, stack yields, lend, borrow, leverage all on one decentralized, community driven platform.',
+  },
+  USDT: {
+    name: 'Tether USD on Fuse',
+    symbol: 'USDT',
+    address: '0xFaDbBF8Ce7D5b7041bE672561bbA99f79c532e10',
+    chainId: 122,
+    decimals: 6,
+    logoURI: '',
+    website: 'https://tether.to/',
+    description:
+      'Tether is a stablecoin pegged to the US Dollar. A stablecoin is a type of cryptocurrency whose value is pegged to another fiat currency like the US Dollar or to a commodity like Gold.Tether is the first stablecoin to be created and it is the most popular stablecoin used in the ecosystem.',
   },
 } as const;
 

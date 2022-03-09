@@ -31,11 +31,17 @@ const {
   // CRONOS_CHAIN_ID,
   // CRONOS_VAULTS_ENDPOINT,
 
-  //AURORA_CHAIN_ID,
-  //AURORA_VAULTS_ENDPOINT,
+  AURORA_CHAIN_ID,
+  AURORA_VAULTS_ENDPOINT,
 
-  //FUSE_CHAIN_ID,
-  //FUSE_VAULTS_ENDPOINT,
+  FUSE_CHAIN_ID,
+  FUSE_VAULTS_ENDPOINT,
+
+  METIS_CHAIN_ID,
+  METIS_VAULTS_ENDPOINT,
+
+  MOONBEAM_CHAIN_ID,
+  MOONBEAM_VAULTS_ENDPOINT,
 } = require('../../constants');
 
 const INIT_DELAY = 40 * 1000;
@@ -95,15 +101,25 @@ const chains = [
   //   governancePool: require('../../data/cronos/governancePool.json'),
   // },
   // {
-  //  chainId: AURORA_CHAIN_ID,
-  //  vaultsEndpoint: AURORA_VAULTS_ENDPOINT,
-  //  governancePool: require('../../data/aurora/governancePool.json'),
-  //},
+  //   chainId: AURORA_CHAIN_ID,
+  //   vaultsEndpoint: AURORA_VAULTS_ENDPOINT,
+  //   governancePool: require('../../data/aurora/governancePool.json'),
+  // },
   // {
-  //  chainId: FUSE_CHAIN_ID,
-  //  vaultsEndpoint: FUSE_VAULTS_ENDPOINT,
-  //  governancePool: require('../../data/fuse/governancePool.json'),
-  //},
+  //   chainId: FUSE_CHAIN_ID,
+  //   vaultsEndpoint: FUSE_VAULTS_ENDPOINT,
+  //   governancePool: require('../../data/fuse/governancePool.json'),
+  // },
+  {
+    chainId: METIS_CHAIN_ID,
+    vaultsEndpoint: METIS_VAULTS_ENDPOINT,
+    governancePool: require('../../data/metis/governancePool.json'),
+  },
+  // {
+  //   chainId: MOONBEAM_CHAIN_ID,
+  //   vaultsEndpoint: MOONBEAM_VAULTS_ENDPOINT,
+  //   governancePool: require('../../data/moonbeam/governancePool.json'),
+  // },
 ];
 
 const getTvl = () => {

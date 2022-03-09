@@ -10,6 +10,8 @@ const { getMoonriverApys } = require('./moonriver');
 const { getCronosApys } = require('./cronos');
 const { getAuroraApys } = require('./aurora');
 const { getFuseApys } = require('./fuse');
+const { getMetisApys } = require('./metis');
+const { getMoonbeamApys } = require('./moonbeam');
 
 const INIT_DELAY = process.env.INIT_DELAY || 60 * 1000;
 const REFRESH_INTERVAL = 15 * 60 * 1000;
@@ -41,6 +43,8 @@ const updateApys = async () => {
       // getCronosApys(),
       // getAuroraApys(),
       // getFuseApys(),
+      getMetisApys(),
+      // getMoonbeamApys(),
     ]);
 
     for (const result of results) {

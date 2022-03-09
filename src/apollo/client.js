@@ -16,7 +16,7 @@ function client(url) {
 }
 
 const apePolyClient = client('https://api.thegraph.com/subgraphs/name/apeswapfinance/dex-polygon');
-const sushiClient = client('https://api.thegraph.com/subgraphs/name/sushiswap/matic-exchange');
+const sushiPolyClient = client('https://api.thegraph.com/subgraphs/name/sushiswap/matic-exchange');
 const sushiOneClient = client(
   'https://sushi.graph.t.hmny.io/subgraphs/name/sushiswap/harmony-exchange'
 );
@@ -30,6 +30,7 @@ const sushiMoonriverClient = client(
 const sushiFantomClient = client(
   'https://api.thegraph.com/subgraphs/name/sushiswap/fantom-exchange'
 );
+const sushiFuseClient = client('https://api.thegraph.com/subgraphs/name/sushiswap/fuse-exchange');
 const comethClient = client('https://api.thegraph.com/subgraphs/name/cometh-game/comethswap');
 const quickClient = client('https://api.thegraph.com/subgraphs/name/sameepsi/quickswap06');
 const polyzapClient = client('https://api.thegraph.com/subgraphs/name/polyzap/exchange');
@@ -70,22 +71,27 @@ const kyberClient = client(
   'https://api.thegraph.com/subgraphs/name/dynamic-amm/dmm-exchange-matic'
 );
 const beetClient = client('https://graph-node.beets-ftm-node.com/subgraphs/name/beethovenx');
+const beamClient = client('https://api.thegraph.com/subgraphs/name/beamswap/beamswap-dex');
+const solarflareClient = client('https://analytics.solarflare.io/api/subgraph');
 const vvsClient = client('https://graph.vvs.finance/exchange');
 const finnClient = client(
   'https://graph-node.huckleberry.finance/subgraphs/name/huckleberry/huckleberry-subgraph'
 );
 const dinoClient = client('https://api.thegraph.com/subgraphs/name/jannerveglobal/dino-swap-dex');
 const fusefiClient = client('https://api.thegraph.com/subgraphs/name/fuseio/fuseswap');
+const netswapClient = client('https://api.netswap.io/graph/subgraphs/name/netswap/exchange');
+const tethysClient = client('https://node.tethys.finance/subgraphs/name/tethys');
 
 const isSushiClient = client => {
   return (
-    client === sushiClient ||
+    client === sushiPolyClient ||
     client === sushiOneClient ||
     client === sushiArbitrumClient ||
     client === joeClient ||
     client === sushiCeloClient ||
     client === sushiMoonriverClient ||
     client === sushiFantomClient ||
+    client === sushiFuseClient ||
     client === dinoClient
   );
 };
@@ -99,12 +105,13 @@ module.exports = {
   joeClient,
   dfynClient,
   apePolyClient,
-  sushiClient,
+  sushiPolyClient,
   sushiOneClient,
   sushiArbitrumClient,
   sushiCeloClient,
   sushiMoonriverClient,
   sushiFantomClient,
+  sushiFuseClient,
   isSushiClient,
   comethClient,
   quickClient,
@@ -132,4 +139,8 @@ module.exports = {
   vvsClient,
   finnClient,
   fusefiClient,
+  netswapClient,
+  tethysClient,
+  beamClient,
+  solarflareClient,
 };

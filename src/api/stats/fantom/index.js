@@ -5,7 +5,7 @@ const getSpookyBooApy = require('./getSpookyBooApy');
 const getFantomBifiGovApy = require('./getFantomBifiGovApy');
 const { getFantomBifiMaxiApy } = require('./getFantomBifiMaxiApy');
 const getTombApys = require('./getTombApys');
-const getSpiritApys = require('./getSpiritApy');
+const getSpiritApys = require('./getSpiritApys');
 const getCurveApys = require('./getCurveApys');
 const getScreamApys = require('./getScreamApys');
 const getSteakHouseLpApys = require('./getSteakHouseLpApys');
@@ -17,13 +17,24 @@ const getSpellApys = require('./getSpellApys');
 const getSingularApys = require('./getSingularApys');
 const getPearzapApys = require('./getPearzapApys');
 const getBeethovenxApys = require('./getBeethovenxApys');
+const getBeethovenxDualApys = require('./getBeethovenxDualApys');
 const getSummitApys = require('./getSummitApys');
 const getGeistLendingApys = require('./getGeistLendingApys');
 const getfBeetsApy = require('./getfBeetsApy');
 const getSpartacadabraApys = require('./getSpartacadabraApys');
 const getPopsicleApys = require('./getPopsicleApys');
+const get2ombApys = require('./get2ombApys');
+const get0xdaoApys = require('./get0xdaoApys');
+const { getSushiLpApys } = require('./getSushiLpApys');
+const getCreditumApys = require('./getCreditumApys');
+const getRipaeApys = require('./getRipaeApys');
+const getWigoApys = require('./getWigoApys');
+const getbeFTMApy = require('./getbeFTMApy');
+const getbeFtmEarnApy = require('./getbeFtmEarnApy');
+const getBasedApy = require('./getBasedApys');
 
 const getApys = [
+  getSushiLpApys,
   getSpookyLpApys,
   getFroyoLpApys,
   getEsterApys,
@@ -43,11 +54,20 @@ const getApys = [
   getSingularApys,
   getPearzapApys,
   getBeethovenxApys,
+  getBeethovenxDualApys,
   getSummitApys,
   getGeistLendingApys,
   getfBeetsApy,
   getSpartacadabraApys,
   getPopsicleApys,
+  get2ombApys,
+  get0xdaoApys,
+  getCreditumApys,
+  getRipaeApys,
+  getWigoApys,
+  getbeFTMApy,
+  getbeFtmEarnApy,
+  getBasedApy,
 ];
 
 const getFantomApys = async () => {

@@ -1,15 +1,9 @@
 `use strict`;
 
-import CZFPools from '../../data/degens/CZFLpPools.json';
-import alpacaLpPools from '../../data/alpacaLpPools.json';
-import annexPools from '../../data/degens/annexLpPools.json';
-import apePolyPools from '../../data/matic/apePolyLpPools.json';
-import apePools from '../../data/degens/apeLpPools.json';
-import arbiNyanPools from '../../data/arbitrum/arbiNyanLpPools.json';
-import autoPools from '../../data/autoLpPools.json';
-import babyPools from '../../data/degens/babyLpPools.json';
 import bakeryPools from '../../data/bakeryLpPools.json';
+import basedPools from '../../data/fantom/basedLpPools.json';
 import bdollarSbdoPools from '../../data/bdollarSbdoLpPools.json';
+import beamswapPools from '../../data/moonbeam/beamswapLpPools.json';
 import bingoPools from '../../data/degens/bingoLpPools.json';
 import bisonPools from '../../data/degens/bisonLpPools.json';
 import biswapPools from '../../data/biswapLpPools.json';
@@ -34,9 +28,12 @@ import comAvaxPools from '../../data/avax/comAvaxLpPools.json';
 import comBscPools from '../../data/comBscLpPools.json';
 import comethMultiPools from '../../data/matic/comethMultiLpPools.json';
 import comethPools from '../../data/matic/comethLpPools.json';
+import creditumPools from '../../data/fantom/creditumPools.json';
 import cronaPools from '../../data/cronos/cronaLpPools.json';
 import crowPools from '../../data/crowLpPools.json';
+import darkCryptoPools from '../../data/cronos/darkCryptoLpPools.json';
 import dfynPools from '../../data/matic/dfynLpPools.json';
+import dibsLpPools from '../../data/degens/dibsLpPools.json';
 import dinoPools from '../../data/matic/dinoswapLpPools.json';
 import dopplePools from '../../data/doppleLpPools.json';
 import dumplingPools from '../../data/degens/dumplingLpPools.json';
@@ -49,6 +46,8 @@ import { fetchAmmPrices } from '../../utils/fetchAmmPrices';
 import { fetchCoinGeckoPrices } from '../../utils/fetchCoinGeckoPrices';
 import { fetchDmmPrices } from '../../utils/fetchDmmPrices';
 import { fetchMooPrices } from '../../utils/fetchMooPrices';
+import { fetchXPrices } from '../../utils/fetchXPrices';
+import { fetchbeFTMPrice } from '../../utils/fetchbeFTMPrice';
 import finnLpPools from '../../data/moonriver/finnLpPools.json';
 import froyoPools from '../../data/fantom/froyoLpPools.json';
 import fruitPools from '../../data/degens/fruitLpPools.json';
@@ -59,6 +58,7 @@ import getNonAmmPrices from './getNonAmmPrices';
 import goalPools from '../../data/degens/goalLpPools.json';
 import gondolaPools from '../../data/avax/gondolaLpPools.json';
 import grandPools from '../../data/grandLpPools.json';
+import grapePools from '../../data/avax/grapeLpPools.json';
 import hfiPools from '../../data/heco/hfiLpPools.json';
 import honeyPools from '../../data/degens/honeyFarmLpPools.json';
 import hpsPools from '../../data/degens/hpsLpPools.json';
@@ -98,6 +98,7 @@ import monsterPools from '../../data/monsterLpPools.json';
 import mooTokens from '../../data/mooTokens.json';
 import narPools from '../../data/narLpPools.json';
 import nautPools from '../../data/degens/nautLpPools.json';
+import netswapPools from '../../data/metis/netswapLpPools.json';
 import nutsPools from '../../data/degens/nutsLpPools.json';
 import nyacashPools from '../../data/nyacashLpPools.json';
 import oldDmmPools from '../../data/archive/oldDmmPools.json';
@@ -105,9 +106,11 @@ import oldPools from '../../data/archive/oldLpPools.json';
 import olivePools from '../../data/avax/oliveLpPools.json';
 import omnifarmPools from '../../data/degens/omnifarmLpPools.json';
 import ooePools from '../../data/ooeLpPools.json';
-import ora from '../../data/celo/orangePool.json';
+import oxdaoPools from '../../data/fantom/0xdaoPools.json';
 import pacocaPools from '../../data/degens/pacocaLpPools.json';
 import pangolinPools from '../../data/avax/pangolinLpPools.json';
+import pangolinV2DualPools from '../../data/avax/pangolinV2DualLpPools.json';
+import pangolinV2Pools from '../../data/avax/pangolinv2LpPools.json';
 import pantherPools from '../../data/degens/pantherLpPools.json';
 import pearzapBscPools from '../../data/degens/pearzapLpPools.json';
 import pearzapFantomPools from '../../data/fantom/pearzapLpPools.json';
@@ -130,6 +133,7 @@ import polyyeldQuickLpPools from '../../data/matic/polyyeldQuickLpPools.json';
 import polyyeldSushiLpPools from '../../data/matic/polyyeldSushiLpPools.json';
 import polyzapPools from '../../data/matic/polyzapLpPools.json';
 import popsicleFantomPools from '../../data/fantom/popsicleLpPools.json';
+import popsicleMaticPools from '../../data/matic/popsicleLpPools.json';
 import popsiclePools from '../../data/popsicleLpPools.json';
 import pswampPools from '../../data/matic/swampLpPools.json';
 import pumpyPools from '../../data/pumpyLpPools.json';
@@ -137,6 +141,8 @@ import quickDualLpPools from '../../data/matic/quickDualLpPools.json';
 import quickPools from '../../data/matic/quickLpPools.json';
 import rabbitPools from '../../data/degens/rabbitLpPools.json';
 import ramenPools from '../../data/ramenLpPools.json';
+import ripaeAvaxPools from '../../data/avax/ripaeLpPools.json';
+import ripaePools from '../../data/fantom/ripaeLpPools.json';
 import saltPools from '../../data/degens/saltLpPools.json';
 import sandmanPools from '../../data/matic/sandmanLpPools.json';
 import satisPools from '../../data/degens/satisLpPools.json';
@@ -150,6 +156,8 @@ import snowballPools from '../../data/avax/snobLpPools.json';
 import solarbeamDualLpPools from '../../data/moonriver/solarbeamDualLpPools.json';
 import solarbeamDualLpV2Pools from '../../data/moonriver/solarbeamDualLpV2Pools.json';
 import solarbeamPools from '../../data/moonriver/solarbeamLpPools.json';
+import solarflare from '../../data/moonbeam/solarFlareLpPools.json';
+import solidlyPools from '../../data/fantom/solidlyLpPools.json';
 import soupPools from '../../data/degens/soupLpPools.json';
 import spacePools from '../../data/degens/spaceLpPools.json';
 import spiritGauges from '../../data/fantom/spiritGauges.json';
@@ -162,6 +170,8 @@ import steakhouseLpPools from '../../data/fantom/steakhouseLpPools.json';
 import summitPools from '../../data/fantom/summitLpPools.json';
 import sushiArbPools from '../../data/arbitrum/sushiLpPools.json';
 import sushiCeloPools from '../../data/celo/sushiLpPools.json';
+import sushiFtmPools from '../../data/fantom/sushiFtmLpPools.json';
+import sushiFusePools from '../../data/fuse/sushiFuseLpPools.json';
 import sushiLpPools from '../../data/matic/sushiLpPools.json';
 import sushiMimPools from '../../data/arbitrum/sushiLpMimPools.json';
 import sushiMr from '../../data/moonriver/sushiLp.json';
@@ -169,29 +179,12 @@ import sushiMrPools from '../../data/moonriver/sushiLpPools.json';
 import sushiOhmPools from '../../data/matic/sushiOhmLpPools.json';
 import sushiOnePools from '../../data/one/sushiLpPools.json';
 import sushiv2Celo from '../../data/celo/sushiv2LpPools.json';
-import swampyPools from '../../data/degens/swampyLpPools.json';
-import swipePools from '../../data/swipeLpPools.json';
-import swirlPools from '../../data/swirlLpPools.json';
-import telxchangePools from '../../data/matic/telxchangePools.json';
-import tenfiPools from '../../data/tenfiLpPools.json';
-import tetuPools from '../../data/matic/tetuLpPools.json';
-import thugsPools from '../../data/thugsLpPools.json';
-import thunderPools from '../../data/degens/thunderLpPools.json';
-import tofyPools from '../../data/degens/tofyLpPools.json';
-import tombPools from '../../data/fantom/tombLpPools.json';
-import tosdisPools from '../../data/degens/tosdisLpPools.json';
-import trisolarisLpPools from '../../data/aurora/trisolarisLpPools.json';
-import typhPools from '../../data/typhLpPools.json';
-import typhPoolsV1 from '../../data/typhLpPoolsV1.json';
-import viralataLpPools from '../../data/degens/viralataLpPools.json';
-import vvsPools from '../../data/cronos/vvsLpPools.json';
-import waultPools from '../../data/waultLpPools.json';
-import wexPolyPools from '../../data/matic/wexPolyLpPools.json';
-import wsgPools from '../../data/degens/wsgLpPools.json';
-import yelPools from '../../data/degens/yelLpPools.json';
-import yieldBayPools from '../../data/degens/yieldBayLpPools.json';
-import zefiPools from '../../data/degens/zefiLpPools.json';
-import zefiV2Pools from '../../data/degens/zefiLpPoolsV2.json';
+import t2ombLpPools from '../../data/fantom/2ombLpPools.json';
+import tethysPools from '../../data/metis/tethysLpPools.json';
+import trisolarisMiniPools from '../../data/aurora/trisolarisMiniLpPools.json';
+import wigoPools from '../../data/fantom/wigoLpPools.json';
+
+// import ora from '../../data/celo/orangePool.json';
 
 const INIT_DELAY = 0 * 60 * 1000;
 const REFRESH_INTERVAL = 5 * 60 * 1000;
@@ -199,8 +192,29 @@ const REFRESH_INTERVAL = 5 * 60 * 1000;
 // FIXME: if this list grows too big we might hit the ratelimit on initialization everytime
 // Implement in case of emergency -> https://github.com/beefyfinance/beefy-api/issues/103
 const pools = [
+  // ...basedPools,
+  // ...solarflare,
+  // ...solidlyPools,
+  // ...wigoPools,
+  // ...darkCryptoPools,
+  // ...beamswapPools,
+  // ...ripaePools,
+  // ...ripaeAvaxPools,
+  // ...creditumPools,
+  // ...trisolarisMiniPools,
+  // ...grapePools,
+  // ...sushiFusePools,
+  // ...sushiFtmPools,
+  // ...oxdaoPools,
+  // ...tethysPools,
+  // ...t2ombLpPools,
+  // ...pangolinV2Pools,
+  // ...pangolinV2DualPools,
+  // ...dibsLpPools,
+  ...netswapPools,
   // ...fusefiPools,
   // ...popsicleFantomPools,
+  // ...popsicleMaticPools,
   ...sushiv2Celo,
   // ...ora,
   // ...liquidusPools,
@@ -393,6 +407,7 @@ const coinGeckoCoins = [
   'par-stablecoin',
   'jarvis-synthetic-euro',
   'jpyc',
+  'cad-coin',
 ];
 
 const knownPrices = {
@@ -417,14 +432,31 @@ const updateAmmPrices = async () => {
     const ammPrices = fetchAmmPrices(pools, knownPrices);
     const dmmPrices = fetchDmmPrices(dmmPools, knownPrices);
 
+    const xPrices = ammPrices.then(async pools => {
+      return await fetchXPrices(pools.tokenPrices);
+    });
+
     const mooPrices = ammPrices.then(async ({ poolPrices, tokenPrices }) => {
       return await fetchMooPrices(mooTokens, tokenPrices, poolPrices);
     });
 
+    const beFtmPrice = ammPrices.then(async pools => {
+      return await fetchbeFTMPrice(pools.tokenPrices);
+    });
+
     const tokenPrices = ammPrices.then(async ({ _, tokenPrices }) => {
       const dmm = await dmmPrices;
+      const xTokenPrices = await xPrices;
       const mooTokenPrices = await mooPrices;
-      return { ...tokenPrices, ...dmm.tokenPrices, ...mooTokenPrices, ...(await coinGeckoPrices) };
+      const beFtmTokenPrice = await beFtmPrice;
+      return {
+        ...tokenPrices,
+        ...dmm.tokenPrices,
+        ...mooTokenPrices,
+        ...xTokenPrices,
+        ...beFtmTokenPrice,
+        ...(await coinGeckoPrices),
+      };
     });
 
     const lpPrices = ammPrices.then(async ({ poolPrices, _ }) => {

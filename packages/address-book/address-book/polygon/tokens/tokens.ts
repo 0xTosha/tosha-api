@@ -27,6 +27,135 @@ const MAI = {
 } as const;
 
 const _tokens = {
+  SX: {
+    name: 'SX Network SX',
+    symbol: 'SX',
+    address: '0x840195888Db4D6A99ED9F73FcD3B225Bb3cB1A79',
+    chainId: 137,
+    decimals: 18,
+    logoURI: 'https://assets.coingecko.com/coins/images/13779/large/sx.png?1636034699',
+    website: 'https://sx.technology/',
+    description:
+      'SX Network is the first public blockchain to combine a smart contract platform with an on-chain community treasury and a native prediction market protocol.',
+  },
+  GENESIS: {
+    name: 'Genesis Worlds GENESIS',
+    symbol: 'GENESIS',
+    address: '0x51869836681BcE74a514625c856aFb697a013797',
+    chainId: 137,
+    decimals: 18,
+    logoURI:
+      'https://assets.coingecko.com/coins/images/19905/large/kKkWmniB_400x400.jpg?1636100432',
+    website: 'https://genesis.game/',
+    description:
+      'Genesis is a multicreator gaming universe, with a diverse community working together to achieve a common goal: A metaverse that will still be growing, evolving, and actively played in 100 years',
+  },
+  BICO: {
+    name: 'Biconomy BICO',
+    symbol: 'BICO',
+    address: '0x91c89A94567980f0e9723b487b0beD586eE96aa7',
+    chainId: 137,
+    decimals: 18,
+    logoURI: 'https://assets.coingecko.com/coins/images/21061/large/biconomy_logo.jpg?1638269749',
+    website: 'https://www.biconomy.io/',
+    description:
+      'Biconomy is a multichain relayer protocol that aims to improve the user onboarding and transaction experience on decentralized applications (DApps)',
+  },
+  BOOK: {
+    name: 'Bookie Dao BOOK',
+    symbol: 'BOOK',
+    address: '0x8192759Bf7f247cC92F74E39B3A4225516624fC1',
+    chainId: 137,
+    decimals: 8,
+    logoURI: 'https://bookie.farm/logoether/bookie200.png',
+    website: 'https://bookie.farm/',
+    description:
+      'Decentralized Betting, where Odds & Games meet the Bookie - play the game or be the house, your stake!',
+  },
+  cxETH: {
+    name: 'CelsiusX Wrapped ETH',
+    symbol: 'cxETH',
+    address: '0xfe4546feFe124F30788c4Cc1BB9AA6907A7987F9',
+    chainId: 137,
+    decimals: 18,
+    logoURI: 'https://i.ibb.co/VDPBwHS/cx-ETH-128x128.png',
+    website: 'https://celsiusx.io/ ',
+    description: 'CelsiusX Wrapped ETH Token',
+  },
+  cxADA: {
+    name: 'CelsiusX Wrapped ADA',
+    symbol: 'cxADA',
+    address: '0x64875Aaa68d1d5521666C67d692Ee0B926b08b2F',
+    chainId: 137,
+    decimals: 18,
+    logoURI: 'https://i.ibb.co/x3RcB6Q/cx-ADA-128x128.png',
+    website: 'https://celsiusx.io/ ',
+    description: 'CelsiusX Wrapped ADA Token',
+  },
+  cxDOGE: {
+    name: 'CelsiusX Wrapped DOGE',
+    symbol: 'cxDOGE',
+    address: '0x9Bd9aD490dD3a52f096D229af4483b94D63BE618',
+    chainId: 137,
+    decimals: 18,
+    logoURI: 'https://i.ibb.co/FH1GMYX/cx-DOGE-128x128.png',
+    website: 'https://celsiusx.io/ ',
+    description: 'CelsiusX Wrapped DOGE Token',
+  },
+  FODL: {
+    name: 'Fodl Finance FODL',
+    symbol: 'FODL',
+    address: '0x5314bA045a459f63906Aa7C76d9F337DcB7d6995',
+    chainId: 137,
+    decimals: 18,
+    logoURI: 'https://assets.coingecko.com/coins/images/19040/large/new.jpg?1634559024',
+    website: 'https://fodl.finance/',
+    description:
+      'Fodl enables traders to utilize leverage for their trades without paying a funding rate. This leverage is derived from existing DeFi building blocks, such as Compound and Aave.',
+  },
+  SAND: {
+    name: 'Sandbox',
+    symbol: 'SAND',
+    address: '0xBbba073C31bF03b8ACf7c28EF0738DeCF3695683',
+    chainId: 137,
+    decimals: 18,
+    website: 'https://www.sandbox.game',
+    description:
+      'The Sandbox is a virtual Metaverse where players can play, build, own, and monetize their virtual experiences. ',
+    logoURI: 'https://assets.coingecko.com/coins/images/12129/large/sandbox_logo.jpg?1597397942',
+  },
+  CADC: {
+    name: 'CAD Coin',
+    symbol: 'CADC',
+    address: '0x5d146d8B1dACb1EBBA5cb005ae1059DA8a1FbF57',
+    chainId: 137,
+    decimals: 18,
+    website: 'https://paytrie.com/cadc',
+    description: 'CADC is a fully-backed stable coin for the Canadian Dollar, issued by PayTrie.',
+    logoURI: 'https://assets.coingecko.com/coins/images/14149/small/cadc_2.png?1614666625',
+  },
+  jCAD: {
+    name: 'Jarvis Synthetic Canadian Dollar',
+    symbol: 'jCAD',
+    address: '0x8ca194A3b22077359b5732DE53373D4afC11DeE3',
+    chainId: 137,
+    decimals: 18,
+    website: 'https://jarvis.network/',
+    description:
+      'jCHF is a multi-collateralized synthetic token tracking the price of the Canadian Dollar. It is built on the top of UMA and Chainlink.',
+    logoURI: 'https://yield.jarvis.network/static/media/jCAD.832ff304.png',
+  },
+  USTw: {
+    name: 'TerraUSD (Wormhole)',
+    symbol: 'UST',
+    address: '0xE6469Ba6D2fD6130788E0eA9C0a0515900563b59',
+    chainId: 137,
+    decimals: 6,
+    logoURI: 'https://s2.coinmarketcap.com/static/img/coins/64x64/7129.png',
+    website: 'https://coinmarketcap.com/currencies/terrausd-wormhole/',
+    description:
+      'Terra stablecoins offer instant settlements, low fees and seamless cross-border exchange - loved by millions of users and merchants.',
+  },
   ETH2x: {
     name: 'ETH 2x Flexible Leverage Index',
     symbol: 'ETH2x',
@@ -370,6 +499,17 @@ const _tokens = {
       'Aavegotchis are crypto-collectibles living on the Ethereum blockchain, backed by the ERC721 standard used in popular blockchain games.',
     logoURI: 'https://aavegotchi.com/images/ghsttoken.svg',
   },
+  GNS: {
+    name: 'Gains Network Token',
+    address: '0xE5417Af564e4bFDA1c483642db72007871397896',
+    symbol: 'GNS',
+    decimals: 18,
+    chainId: 137,
+    website: 'https://gainsnetwork.io/',
+    description: 'Decentralized leverage trading platform on Polygon.',
+    logoURI:
+      'https://raw.githubusercontent.com/beefyfinance/beefy-app/prod/src/images/single-assets/GNS.png',
+  },
   LINK: {
     name: 'ChainLink Token',
     address: '0x53E0bca35eC356BD5ddDFebbD1Fc0fD03FaBad39',
@@ -423,8 +563,17 @@ const _tokens = {
     chainId: 137,
     website: 'https://quickswap.exchange/#/swap',
     description: 'Next-gen Layer 2 DEX. Trade at lightning-fast speeds with near-zero gas fees.',
-    logoURI:
-      'https://raw.githubusercontent.com/sameepsi/quickswap-interface/master/public/favicon.jpeg',
+    logoURI: 'https://assets.coingecko.com/coins/images/15185/small/quickswap.png?1620044811',
+  },
+  dQUICK: {
+    name: "Dragon's Quick",
+    address: '0xf28164A485B0B2C90639E47b0f377b4a438a16B1',
+    symbol: 'dQUICK',
+    decimals: 18,
+    chainId: 137,
+    website: 'https://quickswap.exchange/#/syrup',
+    description: 'Deposit your dQUICK tokens to earn more through the QuickSwap platform.',
+    logoURI: 'https://assets.coingecko.com/coins/images/15185/small/quickswap.png?1620044811',
   },
   SOL: {
     name: 'Solana',
@@ -766,9 +915,9 @@ const _tokens = {
     description: 'FarmHero is a protocol that mixes NFT, gaming and DEFI concepts.',
     logoURI: 'https://s2.coinmarketcap.com/static/img/coins/64x64/10620.png',
   },
-  ICE: {
+  ironICE: {
     name: 'Iron Finance ICE Token',
-    symbol: 'ICE',
+    symbol: 'ironICE',
     address: '0x4A81f8796e0c6Ad4877A51C86693B0dE8093F2ef',
     chainId: 137,
     decimals: 18,
@@ -776,6 +925,18 @@ const _tokens = {
     description:
       'Iron Finance is building a full suite of decentralized finance ecosystem of products and use cases on the Polygon network. The official Iron Finance token is the ICE token, inspired by A Song of Ice and Fire novels, where the Iron Throne is a well-known symbol.',
     logoURI: 'https://app.iron.finance/static/media/ice-square.6e960434.svg',
+  },
+  ICE: {
+    name: 'IceToken',
+    address: '0x4e1581f01046eFDd7a1a2CDB0F82cdd7F71F2E59',
+    symbol: 'ICE',
+    decimals: 18,
+    chainId: 137,
+    website: 'https://popsicle.finance/',
+    description:
+      'Popsicle is a next-gen cross-chain yield enhancement platform focusing on Automated Market-Making (AMM) Liquidity Providers (LP).',
+    logoURI:
+      'https://raw.githubusercontent.com/sushiswap/assets/master/blockchains/ethereum/assets/0xf16e81dce15B08F326220742020379B855B87DF9/logo.png',
   },
   NEXO: {
     name: 'Nexo',
@@ -907,6 +1068,28 @@ const _tokens = {
     website: 'https://jpyc.jp/',
     description:
       "JPYC (JPYCoin) is Japan's first Japanese Yen stablecoin that utilizes blockchain technology.",
+    logoURI: '',
+  },
+  PSP: {
+    name: 'ParaSwap',
+    symbol: 'PSP',
+    address: '0x42d61D766B85431666B39B89C43011f24451bFf6',
+    chainId: 137,
+    decimals: 18,
+    website: 'https://paraswap.io/',
+    description:
+      "ParaSwap aggregates decentralized exchanges and other DeFi services in one comprehensive interface to streamline and facilitate users' interactions with decentralized finance on Ethereum and EVM-compatible chains: Polygon, Avalanche, BSC & more to come.",
+    logoURI: '',
+  },
+  KIRO: {
+    name: 'Kirobo',
+    symbol: 'KIRO',
+    address: '0xB382C1cfA622795a534e5bd56Fac93d59BAc8B0D',
+    chainId: 137,
+    decimals: 18,
+    website: 'https://www.kirobo.io/',
+    description:
+      'Kirobos decentralized applications remove the risk of losing funds enabling you to use blockchain technology to its fullest potential from one consolidated platform.',
     logoURI: '',
   },
 } as const;

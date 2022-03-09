@@ -1,6 +1,8 @@
 import { beefyfinance } from './platforms/beefyfinance';
 import { spookyswap } from './platforms/spookyswap';
 import { spiritswap } from './platforms/spiritswap';
+import { sushiFtm } from './platforms/sushiFtm';
+import { solidly } from './platforms/solidly';
 import { tokens } from './tokens/tokens';
 import { convertSymbolTokenMapToAddressTokenMap } from '../../util/convertSymbolTokenMapToAddressTokenMap';
 import Chain from '../../types/chain';
@@ -11,6 +13,8 @@ const _fantom = {
     beefyfinance,
     spookyswap,
     spiritswap,
+    sushiFtm,
+    solidly,
   },
   tokens,
   tokenAddressMap: convertSymbolTokenMapToAddressTokenMap(tokens),

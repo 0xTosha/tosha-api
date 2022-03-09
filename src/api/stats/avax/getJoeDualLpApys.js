@@ -12,6 +12,7 @@ const { getTradingFeeAprSushi } = require('../../../utils/getTradingFeeApr');
 import { getFarmWithTradingFeesApy } from '../../../utils/getFarmWithTradingFeesApy';
 const { joeClient } = require('../../../apollo/client');
 const { compound } = require('../../../utils/compound');
+import { JOE_LPF } from '../../../constants';
 
 const masterchef = '0x188bED1968b795d5c9022F6a0bb5931Ac4c18F00';
 const oracleIdA = 'JOE';
@@ -21,7 +22,7 @@ const DECIMALSA = '1e18';
 const secondsPerBlock = 1;
 const secondsPerYear = 31536000;
 
-const liquidityProviderFee = 0.0025;
+const liquidityProviderFee = JOE_LPF;
 const beefyPerformanceFee = 0.045;
 const shareAfterBeefyPerformanceFee = 1 - beefyPerformanceFee;
 
@@ -31,7 +32,7 @@ const getJoeDualLpApys = async () => {
 
   const tokenPriceA = await fetchPrice({ oracle: oracleA, id: oracleIdA });
   const { rewardPerSecond, totalAllocPoint } = await getMasterChefData();
-  const { balances, allocPoints, rewarders } = await getPoolsData(pools);
+  const { balances, allocPoints, tokenPerSecData } = await getPoolsData(pools);
 
   const pairAddresses = pools.map(pool => pool.address);
   const tradingAprs = await getTradingFeeAprSushi(joeClient, pairAddresses, liquidityProviderFee);
@@ -45,18 +46,14 @@ const getJoeDualLpApys = async () => {
     const poolBlockRewards = rewardPerSecond.times(allocPoints[i]).dividedBy(totalAllocPoint);
     const yearlyRewards = poolBlockRewards.dividedBy(secondsPerBlock).times(secondsPerYear);
     const yearlyRewardsAInUsd = yearlyRewards.times(tokenPriceA).dividedBy(DECIMALSA);
+    let yearlyRewardsBInUsd = new BigNumber(0);
 
-    const yearlyRewardsBInUsd = await (async () => {
-      if (rewarders[i] === '0x0000000000000000000000000000000000000000') {
-        return 0;
-      } else {
-        const tokenPriceB = await fetchPrice({ oracle: pool.oracleB, id: pool.oracleIdB });
-        const rewarderContract = new web3.eth.Contract(SimpleRewarder, rewarders[i]);
-        const tokenBPerSec = new BigNumber(await rewarderContract.methods.tokenPerSec().call());
-        const yearlyRewardsB = tokenBPerSec.dividedBy(secondsPerBlock).times(secondsPerYear);
-        return yearlyRewardsB.times(tokenPriceB).dividedBy(pool.decimalsB);
-      }
-    })();
+    if (!tokenPerSecData[i].isNaN()) {
+      let tokenBPerSec = tokenPerSecData[i];
+      const tokenPriceB = await fetchPrice({ oracle: pool.oracleB, id: pool.oracleIdB });
+      const yearlyRewardsB = tokenBPerSec.dividedBy(secondsPerBlock).times(secondsPerYear);
+      yearlyRewardsBInUsd = yearlyRewardsB.times(tokenPriceB).dividedBy(pool.decimalsB);
+    }
 
     const yearlyRewardsInUsd = yearlyRewardsAInUsd.plus(yearlyRewardsBInUsd);
 
@@ -72,7 +69,7 @@ const getJoeDualLpApys = async () => {
       1,
       shareAfterBeefyPerformanceFee
     );
-    // console.log(pool.name, simpleApy.valueOf(), tradingApr.valueOf(), apy, totalStakedInUsd.valueOf(), yearlyRewardsInUsd.valueOf());
+    // console.log(pool.name, simpleApy.valueOf(), tradingApr.valueOf(), totalApy.valueOf(), totalStakedInUsd.valueOf(), yearlyRewardsInUsd.valueOf());
 
     // Create reference for legacy /apy
     const legacyApyValue = { [pool.name]: totalApy };
@@ -114,6 +111,7 @@ const getPoolsData = async pools => {
   const multicall = new MultiCall(web3, multicallAddress(AVAX_CHAIN_ID));
   const balanceCalls = [];
   const poolInfoCalls = [];
+  const tokenPerSecCalls = [];
   pools.forEach(pool => {
     const tokenContract = new web3.eth.Contract(ERC20, pool.address);
     balanceCalls.push({
@@ -130,7 +128,20 @@ const getPoolsData = async pools => {
   const balances = res[0].map(v => new BigNumber(v.balance));
   const allocPoints = res[1].map(v => v.poolInfo['3']);
   const rewarders = res[1].map(v => v.poolInfo[4]);
-  return { balances, allocPoints, rewarders };
+
+  rewarders.forEach(rewarder => {
+    let rewarderContract = new web3.eth.Contract(SimpleRewarder, rewarder);
+    let tokenPerSec = rewarderContract.methods.tokenPerSec();
+    tokenPerSecCalls.push({
+      tokenPerSec: tokenPerSec,
+    });
+  });
+
+  const tokenPerSecData = (await multicall.all([tokenPerSecCalls]))[0].map(
+    t => new BigNumber(t.tokenPerSec)
+  );
+
+  return { balances, allocPoints, tokenPerSecData };
 };
 
 module.exports = getJoeDualLpApys;
