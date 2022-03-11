@@ -1,25 +1,25 @@
-const { celoWeb3: web3 } = require('../../../utils/web3');
+const { metisWeb3: web3 } = require('../../../utils/web3');
 
 import { addressBook } from '../../../../packages/address-book/address-book';
 import { getEDecimals } from '../../../utils/getEDecimals';
-import { getORAMaxiApys } from '../common/getORAMaxiApys';
+import { getToshaApys } from '../common/getToshaApys';
 
 const {
-  celo: {
+  metis: {
     platforms: {
-      toshafinance: { rewardPool },
+      toshaio: { rewardPool },
     },
-    tokens: { ORANGE, CELO },
+    tokens: { ORANGE },
   },
 } = addressBook;
 
-export const getCeloOrangeMaxiApy = () => {
-  return getORAMaxiApys({
-    orange: ORANGE.address,
+export const getMetisToshaApy = () => {
+  return getToshaApys({
+    tosha: ORANGE.address,
     rewardPool: rewardPool,
     rewardId: ORANGE.symbol, // TBC
     rewardDecimals: getEDecimals(ORANGE.decimals),
-    chain: 'celo',
+    chain: 'metis',
     web3: web3,
   });
 };

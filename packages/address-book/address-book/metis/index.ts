@@ -1,14 +1,16 @@
+import Chain from '../../types/chain';
+import { ConstInterface } from '../../types/const';
 import { beefyfinance } from './platforms/beefyfinance';
+import { convertSymbolTokenMapToAddressTokenMap } from '../../util/convertSymbolTokenMapToAddressTokenMap';
 import { netswap } from './platforms/netswap';
 import { tethys } from './platforms/tethys';
 import { tokens } from './tokens/tokens';
-import { convertSymbolTokenMapToAddressTokenMap } from '../../util/convertSymbolTokenMapToAddressTokenMap';
-import Chain from '../../types/chain';
-import { ConstInterface } from '../../types/const';
+import { toshaio } from './platforms/Toshaio';
 
 const _metis = {
   platforms: {
     beefyfinance,
+    toshaio,
     netswap,
     tethys,
   },

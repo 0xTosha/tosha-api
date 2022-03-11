@@ -1,9 +1,17 @@
 const getMetisBifiGovApy = require('./getMetisBifiGovApy');
 const { getMetisBifiMaxiApy } = require('./getMetisBifiMaxiApy');
+const { getMetisToshaApy } = require('./getMetisToshaApy');
+const { getMetisToshaGovApy } = require('./getMetisToshaGovApy');
 const getNetswapApys = require('./getNetswapApys');
-const getTethysApys = require('./getTethysApys');
+// const getTethysApys = require('./getTethysApys');
 
-const getApys = [getNetswapApys, getMetisBifiGovApy, getMetisBifiMaxiApy, getTethysApys];
+const getApys = [
+  getNetswapApys,
+  getMetisBifiGovApy,
+  getMetisBifiMaxiApy,
+  getMetisToshaApy,
+  getMetisToshaGovApy,
+];
 
 const getMetisApys = async () => {
   let apys = {};

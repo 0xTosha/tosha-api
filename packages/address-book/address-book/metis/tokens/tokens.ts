@@ -29,6 +29,17 @@ const _tokens = {
     logoURI:
       'https://raw.githubusercontent.com/beefyfinance/beefy-app/prod/src/images/single-assets/BIFI.png',
   },
+  ORANGE: {
+    name: 'Tosha.io',
+    symbol: 'ORANGE',
+    address: '0xC4C49De466b94ad79A992534Db2cbE40BafaF538',
+    chainId: 1088,
+    decimals: 18,
+    website: 'https://tosha.io/',
+    description:
+      'Tosha.io is a Decentralized, Multi-Chain Yield Optimizer platform that allows its users to earn compound interest on their crypto holdings.',
+    logoURI: 'https://raw.githubusercontent.com/0xTosha/tosha-app/blob/DEV/src/images/logot.png',
+  },
   WBTC: {
     name: 'Wrapped BTC',
     symbol: 'WBTC',

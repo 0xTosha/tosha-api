@@ -104,6 +104,25 @@
     }
   },
   {
+    "name": "netswap-orange-metis",
+    "address": "0xfd4EaC8C4F3C132d2C4a85cdEb0Df749b924938F",
+    "decimals": "1e18",
+    "poolId": 0,
+    "chainId": 1088,
+    "lp0": {
+      "address": "0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000",
+      "oracle": "tokens",
+      "oracleId": "METIS",
+      "decimals": "1e18"
+    },
+    "lp1": {
+      "address": "0xC4C49De466b94ad79A992534Db2cbE40BafaF538",
+      "oracle": "tokens",
+      "oracleId": "TOSHA",
+      "decimals": "1e18"
+    }
+  },
+  {
     "name": "netswap-m.usdt-m.usdc",
     "address": "0x1caD5f8f5D4C0AD49646B2565CC0cA725E4280EA",
     "decimals": "1e18",
