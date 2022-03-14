@@ -40,7 +40,6 @@ const getNetswapApys = async () => {
 
   const pairAddresses = pools.map(pool => pool.address);
   const tradingAprs = await getTradingFeeApr(netswapClient, pairAddresses, liquidityProviderFee);
-
   //Fetching TOSHA Apr
   const toshaApyObj = await getMetisToshaApy();
   const toshaApr = new BigNumber(toshaApyObj['simpleApr']);
@@ -48,6 +47,8 @@ const getNetswapApys = async () => {
 
   for (let i = 0; i < pools.length; i++) {
     const pool = pools[i];
+    console.log('POOL LP');
+    console.log(pool.name);
 
     const lpPrice = await fetchPrice({ oracle: 'lps', id: pool.name });
     const totalStakedInUsd = balances[i].times(lpPrice).dividedBy('1e18');
@@ -67,20 +68,11 @@ const getNetswapApys = async () => {
     const yearlyRewardsInUsd = yearlyRewardsAInUsd.plus(yearlyRewardsBInUsd);
 
     const simpleApr = yearlyRewardsInUsd.dividedBy(totalStakedInUsd);
-    // console.log('##############');
-    // console.log(pool.name);
-    // console.log(simpleApr);
     const vaultApr = simpleApr.times(shareAfterBeefyPerformanceFee);
     const vaultApy = compound(simpleApr, BASE_HPY, 1, shareAfterBeefyPerformanceFee);
 
     const tradingApr = tradingAprs[pool.address.toLowerCase()] ?? new BigNumber(0);
-    // const totalApy = getFarmWithTradingFeesApy(
-    //   simpleApr,
-    //   tradingApr,
-    //   BASE_HPY,
-    //   1,
-    //   shareAfterBeefyPerformanceFee
-    // );
+
     const totalApy = getTotalApy(
       simpleApr,
       toshaApr,
@@ -88,6 +80,7 @@ const getNetswapApys = async () => {
       DAILY_HPY,
       shareAfterBeefyPerformanceFee
     );
+
     // Create reference for legacy /apy
     const legacyApyValue = { [pool.name]: totalApy };
 
@@ -103,6 +96,8 @@ const getNetswapApys = async () => {
         lpFee: liquidityProviderFee,
         tradingApr: tradingApr.toNumber(),
         totalApy: totalApy,
+        toshaApr: toshaApr,
+        toshaApy: toshaApy,
       },
     };
 
