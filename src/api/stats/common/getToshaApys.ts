@@ -24,10 +24,14 @@ export const getToshaApys = async (params: ToshaApyParams) => {
     getYearlyRewardsInUsd(params),
     getTotalStakedInUsd(params),
   ]);
+  console.log('<><><><>');
+  console.log(params.tosha);
+  console.log(yearlyRewardsInUsd);
+  console.log(totalStakedInUsd);
   const simpleApy = yearlyRewardsInUsd.dividedBy(totalStakedInUsd);
   const apy = compound(simpleApy, DAILY_HPY, 1, 0.9995); // TODO:
 
-  return { [params.chain + '-tosha']: apy };
+  return { [params.chain + '-tosha']: apy, simpleApr: simpleApy };
 };
 
 const getYearlyRewardsInUsd = async (params: ToshaApyParams) => {
@@ -48,7 +52,7 @@ const getTotalStakedInUsd = async (params: ToshaApyParams) => {
     await tokenContract.methods.balanceOf(params.rewardPool).call()
   );
 
-  const tokenPrice = await fetchPrice({ oracle: 'tokens', id: 'TOSHA' });
+  const tokenPrice = await fetchPrice({ oracle: 'tokens', id: 'ORANGE' });
 
   return totalStaked.times(tokenPrice).dividedBy('1e18');
 };

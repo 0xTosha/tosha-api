@@ -7,12 +7,16 @@ const SimpleRewarder = require('../../../abis/avax/SimpleRewarderPerSec.json');
 const ERC20 = require('../../../abis/ERC20.json');
 const fetchPrice = require('../../../utils/fetchPrice');
 const pools = require('../../../data/metis/netswapLpPools.json');
-const { BASE_HPY, METIS_CHAIN_ID } = require('../../../constants');
+const { BASE_HPY, METIS_CHAIN_ID, DAILY_HPY } = require('../../../constants');
 const { getTradingFeeApr } = require('../../../utils/getTradingFeeApr');
+
+import { NET_LPF } from '../../../constants';
 import { getFarmWithTradingFeesApy } from '../../../utils/getFarmWithTradingFeesApy';
+import { getMetisToshaApy } from '../metis/getMetisToshaApy';
+import { getTotalApy } from '../../../utils/getTotalApy';
+
 const { netswapClient } = require('../../../apollo/client');
 const { compound } = require('../../../utils/compound');
-import { NET_LPF } from '../../../constants';
 
 const masterchef = '0x9d1dbB49b2744A1555EDbF1708D64dC71B0CB052';
 const oracleIdA = 'NETT';
@@ -37,6 +41,11 @@ const getNetswapApys = async () => {
   const pairAddresses = pools.map(pool => pool.address);
   const tradingAprs = await getTradingFeeApr(netswapClient, pairAddresses, liquidityProviderFee);
 
+  //Fetching TOSHA Apr
+  const toshaApyObj = await getMetisToshaApy();
+  const toshaApr = new BigNumber(toshaApyObj['simpleApr']);
+  const toshaApy = compound(toshaApr, DAILY_HPY, 1, 0.9995);
+
   for (let i = 0; i < pools.length; i++) {
     const pool = pools[i];
 
@@ -57,20 +66,28 @@ const getNetswapApys = async () => {
 
     const yearlyRewardsInUsd = yearlyRewardsAInUsd.plus(yearlyRewardsBInUsd);
 
-    const simpleApy = yearlyRewardsInUsd.dividedBy(totalStakedInUsd);
-    const vaultApr = simpleApy.times(shareAfterBeefyPerformanceFee);
-    const vaultApy = compound(simpleApy, BASE_HPY, 1, shareAfterBeefyPerformanceFee);
+    const simpleApr = yearlyRewardsInUsd.dividedBy(totalStakedInUsd);
+    // console.log('##############');
+    // console.log(pool.name);
+    // console.log(simpleApr);
+    const vaultApr = simpleApr.times(shareAfterBeefyPerformanceFee);
+    const vaultApy = compound(simpleApr, BASE_HPY, 1, shareAfterBeefyPerformanceFee);
 
     const tradingApr = tradingAprs[pool.address.toLowerCase()] ?? new BigNumber(0);
-    const totalApy = getFarmWithTradingFeesApy(
-      simpleApy,
+    // const totalApy = getFarmWithTradingFeesApy(
+    //   simpleApr,
+    //   tradingApr,
+    //   BASE_HPY,
+    //   1,
+    //   shareAfterBeefyPerformanceFee
+    // );
+    const totalApy = getTotalApy(
+      simpleApr,
+      toshaApr,
       tradingApr,
-      BASE_HPY,
-      1,
+      DAILY_HPY,
       shareAfterBeefyPerformanceFee
     );
-    // console.log(pool.name, simpleApy.valueOf(), tradingApr.valueOf(), totalApy.valueOf(), totalStakedInUsd.valueOf(), yearlyRewardsInUsd.valueOf());
-
     // Create reference for legacy /apy
     const legacyApyValue = { [pool.name]: totalApy };
 

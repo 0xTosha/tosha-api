@@ -5,7 +5,7 @@ import { convertSymbolTokenMapToAddressTokenMap } from '../../util/convertSymbol
 import { netswap } from './platforms/netswap';
 import { tethys } from './platforms/tethys';
 import { tokens } from './tokens/tokens';
-import { toshaio } from './platforms/Toshaio';
+import { toshaio } from './platforms/toshaio';
 
 const _metis = {
   platforms: {
