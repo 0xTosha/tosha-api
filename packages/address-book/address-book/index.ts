@@ -4,6 +4,7 @@ import { avax } from './avax';
 import { fantom } from './fantom';
 import { heco } from './heco';
 import { one } from './one';
+import { oasis } from './oasis';
 import { arbitrum } from './arbitrum';
 import { celo } from './celo';
 import { moonriver } from './moonriver';
@@ -32,6 +33,7 @@ const _addressBook: {
   readonly polygon: Chain;
   readonly cronos: Chain;
   readonly heco: Chain;
+  readonly oasis: Chain;
   readonly arbitrum: Chain;
 } = {
   polygon,
@@ -47,6 +49,7 @@ const _addressBook: {
   aurora,
   fuse,
   metis,
+  oasis,
   moonbeam,
 } as const;
 
@@ -65,6 +68,7 @@ const _addressBookByChainId: {
   readonly '128': Chain;
   readonly '1313161554': Chain;
   readonly '42161': Chain;
+  readonly '42262': Chain;
 } = {
   [ChainId.polygon]: polygon,
   [ChainId.bsc]: bsc,
@@ -80,6 +84,7 @@ const _addressBookByChainId: {
   [ChainId.fuse]: fuse,
   [ChainId.metis]: metis,
   [ChainId.moonbeam]: moonbeam,
+  [ChainId.oasis]: oasis,
 } as const;
 
 export const addressBook: ConstRecord<typeof _addressBook, Chain> = _addressBook;
