@@ -170,6 +170,7 @@ import steakhouseLpPools from '../../data/fantom/steakhouseLpPools.json';
 import summitPools from '../../data/fantom/summitLpPools.json';
 import sushiArbPools from '../../data/arbitrum/sushiLpPools.json';
 import sushiCeloPools from '../../data/celo/sushiLpPools.json';
+import yuzuswapPools from '../../data/oasis/yuzuLpPools.json';
 import sushiFtmPools from '../../data/fantom/sushiFtmLpPools.json';
 import sushiFusePools from '../../data/fuse/sushiFuseLpPools.json';
 import sushiLpPools from '../../data/matic/sushiLpPools.json';
@@ -212,6 +213,7 @@ const pools = [
   // ...pangolinV2DualPools,
   // ...dibsLpPools,
   ...netswapPools,
+  ...yuzuswapPools,
   // ...fusefiPools,
   // ...popsicleFantomPools,
   // ...popsicleMaticPools,
@@ -395,8 +397,8 @@ const pools = [
   // ...narPools,
   // ...nyacashPools,
   // ...thugsPools,
-  ...cakeLpV1Pools,
-  ...cakeLpPools,
+  // ...cakeLpV1Pools,
+  // ...cakeLpPools,
 ];
 
 const dmmPools = [...kyberPools, ...oldDmmPools];

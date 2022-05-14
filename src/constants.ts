@@ -83,6 +83,7 @@ const FUSEFI_LPF = 0.003;
 const NET_LPF = 0.003;
 const PANGOLIN_LPF = 0.003;
 const TETHYS_LPF = 0.002;
+const YUZU_LPF = 0.003;
 const BEAMSWAP_LPF = 0.0017;
 
 const MULTICHAIN_RPC: Record<ChainId, string> = {
@@ -218,6 +219,7 @@ export {
   NET_LPF,
   PANGOLIN_LPF,
   TETHYS_LPF,
+  YUZU_LPF,
   BEAMSWAP_LPF,
   BEEFY_PERFORMANCE_FEE,
   SHARE_AFTER_PERFORMANCE_FEE,

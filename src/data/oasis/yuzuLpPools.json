@@ -1,0 +1,21 @@
+[
+  {
+    "name": "yuzu-orange-rose",
+    "address": "0xf70DbcA53Abd6b8aACBE28B566965273AC3D53B8",
+    "decimals": "1e18",
+    "poolId": 0,
+    "chainId": 42262,
+    "lp0": {
+      "address": "0x21C718C22D52d0F3a789b752D4c2fD5908a8A733",
+      "oracle": "tokens",
+      "oracleId": "ROSE",
+      "decimals": "1e18"
+    },
+    "lp1": {
+      "address": "0x79801BFFA6699d2Be730f818e9A0ad49BBc65951",
+      "oracle": "tokens",
+      "oracleId": "TOSHA",
+      "decimals": "1e18"
+    }
+  }
+]

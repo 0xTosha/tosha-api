@@ -54,9 +54,6 @@ const getVaultBalances = async (chainId, vaults) => {
   const multicall = new MultiCall(web3, multicallAddress(chainId));
   const balanceCalls = [];
   vaults.forEach(vault => {
-    console.log('====================');
-    console.log(vault.earnedTokenAddress);
-    console.log('====================');
     const vaultContract = new web3.eth.Contract(BeefyVaultV6ABI, vault.earnedTokenAddress);
     balanceCalls.push({
       balance: vaultContract.methods.balance(),

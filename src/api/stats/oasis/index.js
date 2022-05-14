@@ -1,7 +1,8 @@
 const { getOasisToshaApy } = require('./getOasisToshaApy');
 const { getOasisToshaGovApy } = require('./getOasisToshaGovApy');
+const getYuzuswapApys = require('./getYuzuswapApys');
 
-const getApys = [getOasisToshaApy, getOasisToshaGovApy];
+const getApys = [getYuzuswapApys, getOasisToshaApy];
 
 const getOasisApys = async () => {
   let apys = {};
@@ -10,6 +11,7 @@ const getOasisApys = async () => {
   let promises = [];
   getApys.forEach(getApy => promises.push(getApy()));
   const results = await Promise.allSettled(promises);
+  console.log(results);
 
   for (const result of results) {
     if (result.status !== 'fulfilled') {

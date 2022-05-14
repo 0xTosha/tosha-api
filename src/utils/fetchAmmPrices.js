@@ -17,6 +17,7 @@ const MULTICALLS = {
   122: '0xE99c8A590c98c7Ae9FB3B7ecbC115D2eBD533B50',
   1088: '0xfcDD5a02C611ba6Fe2802f885281500EC95805d7',
   1284: '0xd9F2Da642FAA1307e4F70a5E3aC31b9bfe920eAF',
+  42262: '0xE4998a5Ed06a5130511BFdb36aA4D161486B2876',
 };
 
 const MulticallAbi = require('../abis/BeefyPriceMulticall.json');
@@ -41,6 +42,10 @@ const calcTokenPrice = (knownPrice, knownToken, unknownToken) => {
 };
 
 const calcLpPrice = (pool, tokenPrices) => {
+  if (pool.name === 'yuzu-orange-rose') {
+    console.log('Calculating LP Price:');
+    console.log(pool.lp1.balance);
+  }
   const lp0 = pool.lp0.balance
     .multipliedBy(tokenPrices[pool.lp0.oracleId])
     .dividedBy(pool.lp0.decimals);
@@ -119,7 +124,6 @@ const fetchAmmPrices = async (pools, knownPrices) => {
           weights[unknownToken.oracleId] = weight;
         }
         lps[pool.name] = calcLpPrice(pool, prices);
-
         unsolved.splice(i, 1);
         solving = true;
       }

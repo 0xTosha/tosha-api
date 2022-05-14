@@ -14,6 +14,6 @@ export const beefyfinance = {
   rewardPool: '0x2a30C5e0d577108F694d2A96179cd73611Ee069b',
   treasury: treasuryMultisig,
   beefyFeeRecipient: '0x28A12F017d0D843d43C71235F4F58535B8BE8563',
-  multicall: 0x9f8492a08977c92db6f90054c875d5ee24a76d14, //'0x13C6bCC2411861A31dcDC2f990ddbe2325482222',
+  multicall: '0x9F8492A08977C92dB6F90054c875D5ee24A76d14',
   bifiMaxiStrategy: zeroAddress,
 } as const;
