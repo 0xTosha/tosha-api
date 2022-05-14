@@ -1,82 +1,65 @@
-const BigNumber = require('bignumber.js');
-const { MultiCall } = require('eth-multicall');
-const { polygonWeb3: web3, multicallAddress } = require('../../../utils/web3');
+import { getRewardPoolApys } from '../common/getRewardPoolApys';
+import { addressBook } from '../../../../packages/address-book/address-book';
+import { getEDecimals } from '../../../utils/getEDecimals';
+const { polygonWeb3 } = require('../../../utils/web3');
+const {
+  polygon: {
+    tokens: { QUICK, newQUICK },
+  },
+} = addressBook;
 
-const IRewardPool = require('../../../abis/IRewardPool.json');
-const IDragonsLair = require('../../../abis/IDragonsLair.json');
-const ERC20 = require('../../../abis/ERC20.json');
-const fetchPrice = require('../../../utils/fetchPrice');
-const pools = require('../../../data/matic/quickPools.json');
-const { POLYGON_CHAIN_ID, BASE_HPY } = require('../../../constants');
-const { compound } = require('../../../utils/compound');
-import { getFarmWithTradingFeesApy } from '../../../utils/getFarmWithTradingFeesApy';
-const { getYearlyPlatformTradingFees } = require('../../../utils/getTradingFeeApr');
-const { quickClient } = require('../../../apollo/client');
+export const getQuickSingleApys = async () => {
+  const oldQuickApy = getRewardPoolApys({
+    pools: [
+      {
+        name: 'quick-quick',
+        address: '0x831753DD7087CaC61aB5644b308642cc1c33Dc13',
+        rewardPool: '0xA518cca4891e274DD85bDCc47ce8191bccA19854',
+        oracle: 'tokens',
+        oracleId: 'QUICK',
+        decimals: '1e18',
+      },
+    ],
+    oracleId: 'COT',
+    oracle: 'tokens',
+    tokenAddress: QUICK.address,
+    decimals: getEDecimals(QUICK.decimals),
+    web3: polygonWeb3,
+    chainId: 137,
+    // log: true,
+  });
 
-const oracle = 'tokens';
-const stakedOracleId = 'QUICK';
-const STAKED_DECIMALS = '1e18';
+  const newQuickApy = getRewardPoolApys({
+    pools: [
+      {
+        name: 'quick-newquick',
+        address: '0xB5C064F955D8e7F38fE0460C556a72987494eE17',
+        rewardPool: '0xEc9DB6f357917a88e223c6A88c2CBFC6f7d76a39',
+        oracle: 'tokens',
+        oracleId: 'newQUICK',
+        decimals: '1e18',
+      },
+    ],
+    oracleId: 'QUIDD',
+    oracle: 'tokens',
+    tokenAddress: newQUICK.address,
+    decimals: getEDecimals(newQUICK.decimals),
+    web3: polygonWeb3,
+    chainId: 137,
+    // log: true,
+  });
 
-const SECONDS_PER_YEAR = 31536000;
-
-const liquidityProviderFee = 0.0004;
-const beefyPerformanceFee = 0.045;
-const shareAfterBeefyPerformanceFee = 1 - beefyPerformanceFee;
-
-const getQuickSingleApys = async () => {
   let apys = {};
   let apyBreakdowns = {};
 
-  const quickPrice = await fetchPrice({ oracle, id: stakedOracleId });
-  const { balances, rewardRates } = await getPoolsData(pools);
-
-  const tokenContract = new web3.eth.Contract(ERC20, pools[0].address);
-  const totalStakedInDragonsLair = await tokenContract.methods
-    .balanceOf(pools[0].dragonsLair)
-    .call();
-  const totalStakedInDragonsLairInUsd = new BigNumber(totalStakedInDragonsLair)
-    .times(quickPrice)
-    .dividedBy(STAKED_DECIMALS);
-  const yearlyTradingFees = await getYearlyPlatformTradingFees(quickClient, liquidityProviderFee);
-
-  for (let i = 0; i < pools.length; i++) {
-    const pool = pools[i];
-
-    const totalStakedInUsd = balances[i].times(quickPrice).dividedBy(STAKED_DECIMALS);
-
-    const tokenPrice = await fetchPrice({ oracle, id: pool.rewardToken });
-    const yearlyRewards = rewardRates[i].times(SECONDS_PER_YEAR);
-    const yearlyRewardsInUsd = yearlyRewards.times(tokenPrice).dividedBy(pool.rewardDecimals);
-
-    const simpleApr = yearlyRewardsInUsd.dividedBy(totalStakedInUsd);
-    const vaultApr = simpleApr.times(shareAfterBeefyPerformanceFee);
-    const vaultApy = compound(simpleApr, BASE_HPY, 1, shareAfterBeefyPerformanceFee);
-    const tradingApr = yearlyTradingFees.div(totalStakedInDragonsLairInUsd);
-    const totalApy = getFarmWithTradingFeesApy(
-      simpleApr,
-      tradingApr,
-      BASE_HPY,
-      1,
-      shareAfterBeefyPerformanceFee
-    );
-    const legacyApyValue = { [pool.name]: totalApy };
-    // Add token to APYs object
-    apys = { ...apys, ...legacyApyValue };
-
-    // Create reference for breakdown /apy
-    const componentValues = {
-      [pool.name]: {
-        vaultApr: vaultApr.toNumber(),
-        compoundingsPerYear: BASE_HPY,
-        beefyPerformanceFee: beefyPerformanceFee,
-        vaultApy: vaultApy,
-        lpFee: liquidityProviderFee,
-        tradingApr: tradingApr.toNumber(),
-        totalApy: totalApy,
-      },
-    };
-    // Add token to APYs object
-    apyBreakdowns = { ...apyBreakdowns, ...componentValues };
+  const results = await Promise.allSettled([oldQuickApy, newQuickApy]);
+  for (const result of results) {
+    if (result.status !== 'fulfilled') {
+      console.warn('getQuickApys error', result.reason);
+    } else {
+      apys = { ...apys, ...result.value.apys };
+      apyBreakdowns = { ...apyBreakdowns, ...result.value.apyBreakdowns };
+    }
   }
 
   return {
@@ -84,27 +67,3 @@ const getQuickSingleApys = async () => {
     apyBreakdowns,
   };
 };
-
-const getPoolsData = async pools => {
-  const multicall = new MultiCall(web3, multicallAddress(POLYGON_CHAIN_ID));
-  const balanceCalls = [];
-  const rewardRateCalls = [];
-  pools.forEach(pool => {
-    const tokenContract = new web3.eth.Contract(IDragonsLair, pool.dragonsLair);
-    balanceCalls.push({
-      balance: tokenContract.methods.QUICKBalance(pool.rewardPool),
-    });
-    const rewardPool = new web3.eth.Contract(IRewardPool, pool.rewardPool);
-    rewardRateCalls.push({
-      rewardRate: rewardPool.methods.rewardRate(),
-    });
-  });
-
-  const res = await multicall.all([balanceCalls, rewardRateCalls]);
-
-  const balances = res[0].map(v => new BigNumber(v.balance));
-  const rewardRates = res[1].map(v => new BigNumber(v.rewardRate));
-  return { balances, rewardRates };
-};
-
-module.exports = getQuickSingleApys;

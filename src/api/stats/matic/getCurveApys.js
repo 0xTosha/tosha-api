@@ -8,6 +8,7 @@ import {
   getTotalStakedInUsd,
   getYearlyRewardsInUsd,
 } from '../common/curve/getCurveApyData';
+import { getContractWithProvider } from '../../../utils/contractHelper';
 
 const ICurvePool = require('../../../abis/ICurvePool.json');
 const { getAavePoolData } = require('./getAaveApys');
@@ -15,7 +16,8 @@ const { getAavePoolData } = require('./getAaveApys');
 const aavePools = require('../../../data/matic/aavePools.json');
 const pools = require('../../../data/matic/curvePools.json');
 
-const baseApyUrl = 'https://stats.curve.fi/raw-stats-polygon/apys.json';
+const baseApyUrl = 'https://api.curve.fi/api/getSubgraphData/polygon';
+// const baseApyUrl = 'https://stats.curve.fi/raw-stats-polygon/apys.json';
 const tradingFees = 0.00015;
 
 const getCurveApys = async () => {
@@ -50,6 +52,9 @@ const getPoolApy = async pool => {
 };
 
 const getAaveApy = async pool => {
+  // no Matic APY on aave v2
+  return new BigNumber(0);
+
   let promises = [];
   pool.tokens.forEach(token => promises.push(getAaveMaticApy(token)));
   pool.tokens.forEach((token, i) => promises.push(getTokenBalance(pool.pool, token, i)));
@@ -84,7 +89,7 @@ const getAaveMaticApy = async token => {
 };
 
 const getTokenBalance = async (curvePool, token, index) => {
-  const pool = new web3.eth.Contract(ICurvePool, curvePool);
+  const pool = getContractWithProvider(ICurvePool, curvePool, web3);
   const balance = await pool.methods.balances(index).call();
   let price = 1;
   if (token.oracleId) {

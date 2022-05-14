@@ -1,8 +1,12 @@
 const { getMetisApys } = require('./metis');
 const { getOasisApys } = require('./oasis');
+const { getMoonbeamApys } = require('./moonbeam');
+const { getSysApys } = require('./sys');
+const { getEmeraldApys } = require('./emerald');
+const { getKey, setKey } = require('../../utils/redisHelper');
 
 const INIT_DELAY = process.env.INIT_DELAY || 60 * 1000;
-const REFRESH_INTERVAL = 15 * 60 * 1000;
+var REFRESH_INTERVAL = 15 * 60 * 1000;
 
 let apys = {};
 let apyBreakdowns = {};
@@ -18,7 +22,7 @@ const updateApys = async () => {
   console.log('> updating apys');
 
   try {
-    const results = await Promise.allSettled([getMetisApys(), getOasisApys()]);
+    const results = await Promise.allSettled([getMetisApys(), getOasisApys(), getEmeraldApys()]);
 
     for (const result of results) {
       if (result.status !== 'fulfilled') {
@@ -53,6 +57,7 @@ const updateApys = async () => {
     }
 
     console.log('> updated apys');
+    await saveToRedis();
   } catch (err) {
     console.error('> apy initialization failed', err);
   }
@@ -60,6 +65,19 @@ const updateApys = async () => {
   setTimeout(updateApys, REFRESH_INTERVAL);
 };
 
-setTimeout(updateApys, INIT_DELAY);
+const initApyService = async () => {
+  let cachedApy = await getKey('APY');
+  let cachedApyBreakdown = await getKey('APY_BREAKDOWN');
+  apys = cachedApy ?? {};
+  apyBreakdowns = cachedApyBreakdown ?? {};
 
-module.exports = { getApys };
+  setTimeout(updateApys, INIT_DELAY);
+};
+
+const saveToRedis = async () => {
+  await setKey('APY', apys);
+  await setKey('APY_BREAKDOWN', apyBreakdowns);
+  console.log('APYs saved to redis');
+};
+
+module.exports = { getApys, initApyService };

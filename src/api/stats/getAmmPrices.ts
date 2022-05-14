@@ -160,7 +160,7 @@ import solarflare from '../../data/moonbeam/solarFlareLpPools.json';
 import solidlyPools from '../../data/fantom/solidlyLpPools.json';
 import soupPools from '../../data/degens/soupLpPools.json';
 import spacePools from '../../data/degens/spaceLpPools.json';
-import spiritGauges from '../../data/fantom/spiritGauges.json';
+// import spiritGauges from '../../data/fantom/spiritGauges.json';
 import spiritPools from '../../data/fantom/spiritPools.json';
 import spongePools from '../../data/spongeLpPools.json';
 import spookyPools from '../../data/fantom/spookyLpPools.json';
@@ -184,10 +184,12 @@ import t2ombLpPools from '../../data/fantom/2ombLpPools.json';
 import tethysPools from '../../data/metis/tethysLpPools.json';
 import trisolarisMiniPools from '../../data/aurora/trisolarisMiniLpPools.json';
 import wigoPools from '../../data/fantom/wigoLpPools.json';
-
+import yuzuLpPools from '../../data/emerald/yuzuLpPools.json';
+import yuzuDualPools from '../../data/emerald/yuzuDualLpPools.json';
+const { getKey, setKey } = require('../../utils/redisHelper');
 // import ora from '../../data/celo/orangePool.json';
 
-const INIT_DELAY = 0 * 60 * 1000;
+const INIT_DELAY = 2 * 1000;
 const REFRESH_INTERVAL = 5 * 60 * 1000;
 
 // FIXME: if this list grows too big we might hit the ratelimit on initialization everytime
@@ -212,6 +214,8 @@ const pools = [
   // ...pangolinV2Pools,
   // ...pangolinV2DualPools,
   // ...dibsLpPools,
+  ...yuzuLpPools,
+  ...yuzuDualPools,
   ...netswapPools,
   ...yuzuswapPools,
   // ...fusefiPools,
@@ -410,6 +414,9 @@ const coinGeckoCoins = [
   'jarvis-synthetic-euro',
   'jpyc',
   'cad-coin',
+  'xsgd',
+  'usd-balance',
+  'gelato',
 ];
 
 const knownPrices = {
@@ -418,7 +425,6 @@ const knownPrices = {
   HUSD: 1,
   DAI: 1,
   USDC: 1,
-  UST: 1,
   USDN: 1,
   cUSD: 1,
   asUSDC: 1,
@@ -429,21 +435,34 @@ let lpPricesCache: Promise<any>;
 
 const updateAmmPrices = async () => {
   console.log('> updating amm prices');
+  let start = Date.now();
   try {
     const coinGeckoPrices = fetchCoinGeckoPrices(coinGeckoCoins);
     const ammPrices = fetchAmmPrices(pools, knownPrices);
     const dmmPrices = fetchDmmPrices(dmmPools, knownPrices);
 
-    const xPrices = ammPrices.then(async pools => {
-      return await fetchXPrices(pools.tokenPrices);
+    const xPrices = ammPrices.then(async ({ poolPrices, tokenPrices }) => {
+      return await fetchXPrices(tokenPrices);
     });
+
+    // const stargatePrices = ammPrices.then(async ({ poolPrices, tokenPrices }) => {
+    //   return await fetchStargatePrices(tokenPrices);
+    // });
 
     const mooPrices = ammPrices.then(async ({ poolPrices, tokenPrices }) => {
       return await fetchMooPrices(mooTokens, tokenPrices, poolPrices);
     });
 
-    const beFtmPrice = ammPrices.then(async pools => {
-      return await fetchbeFTMPrice(pools.tokenPrices);
+    const beFtmPrice = ammPrices.then(async ({ poolPrices, tokenPrices }) => {
+      return await fetchbeFTMPrice(tokenPrices);
+    });
+
+    const beTokenPrice = ammPrices.then(async ({ poolPrices, tokenPrices }) => {
+      return {
+        beJOE: tokenPrices['JOE'],
+        beQI: tokenPrices['QI'],
+        beCAKE: tokenPrices['Cake'],
+      };
     });
 
     const tokenPrices = ammPrices.then(async ({ _, tokenPrices }) => {
@@ -451,12 +470,16 @@ const updateAmmPrices = async () => {
       const xTokenPrices = await xPrices;
       const mooTokenPrices = await mooPrices;
       const beFtmTokenPrice = await beFtmPrice;
+      // const stargateTokenPrices = await stargatePrices;
+      const beTokenTokenPrice = await beTokenPrice;
       return {
         ...tokenPrices,
         ...dmm.tokenPrices,
         ...mooTokenPrices,
         ...xTokenPrices,
+        // ...stargateTokenPrices,
         ...beFtmTokenPrice,
+        ...beTokenTokenPrice,
         ...(await coinGeckoPrices),
       };
     });
@@ -481,7 +504,8 @@ const updateAmmPrices = async () => {
     console.error(err);
   } finally {
     setTimeout(updateAmmPrices, REFRESH_INTERVAL);
-    console.log('> updated amm prices');
+    console.log(`> updated amm prices (${(Date.now() - start) / 1000}s)`);
+    saveToRedis();
   }
 };
 
@@ -509,11 +533,26 @@ export const getAmmLpPrice = async lpName => {
   console.error(`Unknown liquidity pair '${lpName}'. Consider adding it to .json file`);
 };
 
-const init =
-  // Flexible delayed initialization used to work around ratelimits
-  new Promise((resolve, reject) => {
-    setTimeout(resolve, INIT_DELAY);
-  }).then(updateAmmPrices);
+export const initPriceService = async () => {
+  const tokenPrices = await getKey('TOKEN_PRICES');
+  const lpPrices = await getKey('LP_PRICES');
 
-tokenPricesCache = init.then(({ tokenPrices, lpPrices }) => tokenPrices);
-lpPricesCache = init.then(({ tokenPrices, lpPrices }) => lpPrices);
+  const init =
+    // Flexible delayed initialization used to work around ratelimits
+    new Promise((resolve, reject) => {
+      setTimeout(resolve, INIT_DELAY);
+    }).then(updateAmmPrices);
+
+  tokenPricesCache = tokenPrices
+    ? Promise.resolve(tokenPrices)
+    : init.then(({ tokenPrices, lpPrices }) => tokenPrices);
+  lpPricesCache = lpPrices
+    ? Promise.resolve(lpPrices)
+    : init.then(({ tokenPrices, lpPrices }) => lpPrices);
+};
+
+const saveToRedis = async () => {
+  await setKey('TOKEN_PRICES', await tokenPricesCache);
+  await setKey('LP_PRICES', await lpPricesCache);
+  console.log('Prices saved to redis');
+};

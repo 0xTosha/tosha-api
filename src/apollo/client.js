@@ -11,7 +11,14 @@ function client(url) {
   const timeoutHttpLink = timeoutLink.concat(httpLink);
   return new ApolloClient({
     link: timeoutHttpLink,
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({
+      addTypename: false,
+    }),
+    defaultOptions: {
+      query: {
+        fetchPolicy: 'no-cache',
+      },
+    },
   });
 }
 
@@ -73,6 +80,7 @@ const kyberClient = client(
 const beetClient = client('https://graph-node.beets-ftm-node.com/subgraphs/name/beethovenx');
 const beamClient = client('https://api.thegraph.com/subgraphs/name/beamswap/beamswap-dex');
 const solarflareClient = client('https://analytics.solarflare.io/api/subgraph');
+const stellaClient = client('https://api.thegraph.com/subgraphs/name/stellaswap/stella-swap');
 const vvsClient = client('https://graph.vvs.finance/exchange');
 const finnClient = client(
   'https://graph-node.huckleberry.finance/subgraphs/name/huckleberry/huckleberry-subgraph'
@@ -81,6 +89,9 @@ const dinoClient = client('https://api.thegraph.com/subgraphs/name/jannervegloba
 const fusefiClient = client('https://api.thegraph.com/subgraphs/name/fuseio/fuseswap');
 const netswapClient = client('https://api.netswap.io/graph/subgraphs/name/netswap/exchange');
 const tethysClient = client('https://node.tethys.finance/subgraphs/name/tethys');
+const tombswapClient = client('https://api.thegraph.com/subgraphs/name/github-qfg/tombswap');
+const biswapClient = client('https://api.thegraph.com/subgraphs/name/biswapcom/exchange5');
+const pegasysClient = client('https://graph.pegasys.exchange/subgraphs/name/pollum-io/pegasys');
 
 const isSushiClient = client => {
   return (
@@ -143,4 +154,8 @@ module.exports = {
   tethysClient,
   beamClient,
   solarflareClient,
+  stellaClient,
+  tombswapClient,
+  biswapClient,
+  pegasysClient,
 };

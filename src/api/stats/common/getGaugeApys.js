@@ -8,6 +8,7 @@ const fetchPrice = require('../../../utils/fetchPrice');
 import getApyBreakdown from '../common/getApyBreakdown';
 import { isSushiClient } from '../../../apollo/client';
 import { getTradingFeeApr, getTradingFeeAprSushi } from '../../../utils/getTradingFeeApr';
+import { getContract } from '../../../utils/contractHelper';
 
 export const getGaugeApys = async params => {
   const tradingAprs = await getTradingAprs(params);
@@ -71,7 +72,7 @@ const getPoolsData = async params => {
   const multicall = new MultiCall(web3, multicallAddress(params.chainId));
   const calls = [];
   params.pools.forEach(pool => {
-    const gauge = new web3.eth.Contract(IGauge, pool.gauge);
+    const gauge = getContract(IGauge, pool.gauge);
     calls.push({
       balance: gauge.methods.totalSupply(),
       rewardRate: gauge.methods.rewardRate(),

@@ -51,6 +51,8 @@ const FUSE_RPC = process.env.FUSE_RPC || 'https://rpc.fuse.io';
 const METIS_RPC = process.env.METIS_RPC || 'https://andromeda.metis.io/?owner=1088';
 const OASIS_RPC = process.env.OASIS_RPC || 'https://emerald.oasis.dev';
 const MOONBEAM_RPC = process.env.MOONBEAM_RPC || 'https://rpc.api.moonbeam.network';
+const SYS_RPC = process.env.SYS_RPC || 'https://rpc.syscoin.org/';
+const EMERALD_RPC = process.env.EMERALD_RPC || 'https://emerald.oasis.dev';
 
 const BSC_CHAIN_ID = ChainId.bsc;
 const HECO_CHAIN_ID = ChainId.heco;
@@ -67,6 +69,8 @@ const FUSE_CHAIN_ID = ChainId.fuse;
 const METIS_CHAIN_ID = ChainId.metis;
 const MOONBEAM_CHAIN_ID = ChainId.moonbeam;
 const OASIS_CHAIN_ID = ChainId.oasis;
+const SYS_CHAIN_ID = ChainId.sys;
+const EMERALD_CHAIN_ID = ChainId.emerald;
 
 const DFYN_LPF = 0.003;
 const SUSHI_LPF = 0.003;
@@ -79,12 +83,15 @@ const APE_LPF = 0.002;
 const SPOOKY_LPF = 0.002;
 const JOE_LPF = 0.003;
 const SOLAR_LPF = 0.0025;
+const PEGASYS_LPF = 0.0025;
 const FUSEFI_LPF = 0.003;
 const NET_LPF = 0.003;
 const PANGOLIN_LPF = 0.003;
 const TETHYS_LPF = 0.002;
 const YUZU_LPF = 0.003;
 const BEAMSWAP_LPF = 0.0017;
+const TOMBSWAP_LPF = 0.005;
+const BISWAP_LPF = 0.0005;
 
 const MULTICHAIN_RPC: Record<ChainId, string> = {
   [ChainId.bsc]: BSC_RPC,
@@ -102,6 +109,8 @@ const MULTICHAIN_RPC: Record<ChainId, string> = {
   [ChainId.metis]: METIS_RPC,
   [ChainId.oasis]: OASIS_RPC,
   [ChainId.moonbeam]: MOONBEAM_RPC,
+  [ChainId.sys]: SYS_RPC,
+  [ChainId.emerald]: EMERALD_RPC,
 };
 
 const BSC_VAULTS_ENDPOINT =
@@ -134,11 +143,25 @@ const MOONBEAM_VAULTS_ENDPOINT =
   'https://raw.githubusercontent.com/beefyfinance/beefy-app/prod/src/features/configure/vault/moonbeam_pools.js';
 const OASIS_VAULTS_ENDPOINT =
   'https://raw.githubusercontent.com/0xtosha/tosha-app/V1/src/features/configure/vault/oasis_pools.js';
+//  const SYS_VAULTS_ENDPOINT =
+//  'https://raw.githubusercontent.com/beefyfinance/beefy-app/prod/src/features/configure/vault/sys_pools.js';
+//  const EMERALD_VAULTS_ENDPOINT =
+//  'https://raw.githubusercontent.com/beefyfinance/beefy-app/prod/src/features/configure/vault/emerald_pools.js';
 
 const MULTICHAIN_ENDPOINTS = {
+  bsc: BSC_VAULTS_ENDPOINT,
+  avax: AVAX_VAULTS_ENDPOINT,
+  polygon: POLYGON_VAULTS_ENDPOINT,
+  fantom: FANTOM_VAULTS_ENDPOINT,
+  one: ONE_VAULTS_ENDPOINT,
+  arbitrum: ARBITRUM_VAULTS_ENDPOINT,
   celo: CELO_VAULTS_ENDPOINT,
   metis: METIS_VAULTS_ENDPOINT,
   oasis: OASIS_VAULTS_ENDPOINT,
+  moonbeam: MOONBEAM_VAULTS_ENDPOINT,
+  // sys: SYS_VAULTS_ENDPOINT,
+  // emerald: EMERALD_VAULTS_ENDPOINT,
+  heco: HECO_VAULTS_ENDPOINT,
 };
 
 const BEEFY_PERFORMANCE_FEE = 0.045;
@@ -194,6 +217,12 @@ export {
   OASIS_CHAIN_ID,
   OASIS_VAULTS_ENDPOINT,
   MOONBEAM_VAULTS_ENDPOINT,
+  SYS_RPC,
+  SYS_CHAIN_ID,
+  // SYS_VAULTS_ENDPOINT,
+  EMERALD_RPC,
+  EMERALD_CHAIN_ID,
+  // EMERALD_VAULTS_ENDPOINT,
   BASE_HPY,
   MINUTELY_HPY,
   HOURLY_HPY,
@@ -221,6 +250,9 @@ export {
   TETHYS_LPF,
   YUZU_LPF,
   BEAMSWAP_LPF,
+  BISWAP_LPF,
+  TOMBSWAP_LPF,
+  PEGASYS_LPF,
   BEEFY_PERFORMANCE_FEE,
   SHARE_AFTER_PERFORMANCE_FEE,
   EXCLUDED_IDS_FROM_TVL,

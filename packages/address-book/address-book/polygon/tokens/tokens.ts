@@ -27,6 +27,240 @@ const MAI = {
 } as const;
 
 const _tokens = {
+  newQUICK: {
+    name: 'Quickswap',
+    address: '0xB5C064F955D8e7F38fE0460C556a72987494eE17',
+    symbol: 'newQUICK',
+    decimals: 18,
+    chainId: 137,
+    website: 'https://quickswap.exchange/#/swap',
+    description: 'Next-gen Layer 2 DEX. Trade at lightning-fast speeds with near-zero gas fees.',
+    logoURI: 'https://assets.coingecko.com/coins/images/15185/small/quickswap.png?1620044811',
+  },
+  QUIDD: {
+    name: 'QUIDD',
+    address: '0x123706cDD8e60324e610E9A2CC7012D0F45A5b8E',
+    symbol: 'QUIDD',
+    decimals: 18,
+    chainId: 137,
+    website: 'https://www.quiddtoken.com/',
+    description:
+      'A fungible utility token built on Ethereum, QUIDD is the cornerstone of a new, cooperative economic system that aligns the interests of collectors, creators, and developers.',
+    logoURI: 'https://assets.coingecko.com/coins/images/19725/small/quidd.png?1637303435',
+  },
+  '4EUR': {
+    name: 'Curve Factory 4EUR',
+    symbol: '4EUR',
+    address: '0xAd326c253A84e9805559b73A08724e11E49ca651',
+    chainId: 137,
+    decimals: 18,
+    logoURI: '',
+    website: 'https://polygon.curve.fi',
+    description: 'Curves Factory 4EUR Pool',
+  },
+  MaticX: {
+    name: 'Stader Staking Matic',
+    symbol: 'MaticX',
+    address: '0xfa68FB4628DFF1028CFEc22b4162FCcd0d45efb6',
+    chainId: 137,
+    decimals: 18,
+    logoURI: '',
+    website: 'https://polygon.staderlabs.com/liquid-staking/maticx',
+    description:
+      'Stader is a non-custodial smart contract-based staking platform that helps you conveniently discover and access staking solutions. We are building key staking middleware infra for multiple PoS networks for retail crypto users, exchanges and custodians.',
+  },
+  SD: {
+    name: 'Stader ',
+    symbol: 'SD',
+    address: '0x1d734A02eF1e1f5886e66b0673b71Af5B53ffA94',
+    chainId: 137,
+    decimals: 18,
+    logoURI: '',
+    website: 'https://staderlabs.com/',
+    description:
+      'Stader is a non-custodial smart contract-based staking platform that helps you conveniently discover and access staking solutions. We are building key staking middleware infra for multiple PoS networks for retail crypto users, exchanges and custodians.',
+  },
+  beQI: {
+    name: 'Beefy QI',
+    symbol: 'beQI',
+    address: '0x97bfa4b212A153E15dCafb799e733bc7d1b70E72',
+    chainId: 137,
+    decimals: 18,
+    logoURI: '',
+    website: 'https://beefy.com',
+    description:
+      'beQI is a Beefy-wrapped version of eQI. Holding beQI will be a great way to earn a bunch of QI. Beefy will distribute weekly QI rewards to beQI stakers. beQI holders will recieve the same rewards as max lock eQI holders',
+  },
+  stMATIC: {
+    name: 'Lido Staked Matic stMATIC',
+    symbol: 'stMATIC',
+    address: '0x3A58a54C066FdC0f2D55FC9C89F0415C92eBf3C4',
+    chainId: 137,
+    decimals: 18,
+    logoURI: 'https://assets.coingecko.com/coins/images/24185/large/stMATIC.png?1646789287/',
+    website: 'https://polygon.lido.fi/',
+    description:
+      'Lido for Polygon is a liquid staking solution for MATIC backed by industry-leading staking providers.',
+  },
+  ONE: {
+    name: 'Wrapped ONE',
+    address: '0x80c0CBDB8d0B190238795d376f0bD57fd40525F2',
+    symbol: 'WONE',
+    decimals: 18,
+    chainId: 137,
+    website: 'https://www.harmony.one/',
+    description:
+      'Harmony is an open and fast blockchain. Our mainnet runs Ethereum applications with 2-second transaction finality and 100 times lower fees.',
+    logoURI:
+      'https://res.cloudinary.com/dnz2bkszg/image/fetch/f_auto/https://raw.githubusercontent.com/sushiswap/icons/master/token/one.jpg',
+  },
+  METIS: {
+    name: 'METIS',
+    address: '0xA863246658DEA34111C3C1DceDb2cfd5d6067334',
+    symbol: 'WMETIS',
+    decimals: 18,
+    chainId: 137,
+    website: 'https://www.metis.io/',
+    description:
+      'METIS IS SOLVING ETHEREUMS SIX BIGGEST CHALLENGES. SIMPLICITY. SPEED. STORAGE. SCALABILITY. SECURITY. SAVINGS.',
+    logoURI: '',
+  },
+  NEAR: {
+    name: 'NEAR',
+    symbol: 'NEAR',
+    address: '0x72bd80445b0db58ebe3E8dB056529D4C5FAF6F2f',
+    chainId: 137,
+    decimals: 18,
+    logoURI:
+      'https://pancakeswap.finance/images/tokens/0xC42C30aC6Cc15faC9bD938618BcaA1a1FaE8501d.svg',
+    website: 'https://near.org/',
+    description:
+      'Through simple, secure, and scalable technology, NEAR empowers millions to invent and explore new experiences. Business, creativity, and community are being reimagined for a more sustainable and inclusive future.',
+  },
+  CEL: {
+    name: 'Celsius CEL',
+    symbol: 'CEL',
+    address: '0xD85d1e945766Fea5Eda9103F918Bd915FbCa63E6',
+    chainId: 137,
+    decimals: 4,
+    website: 'https://celsius.network/',
+    description:
+      "An economy where financial freedom doesn't come with a price tag.  Our goal is to disrupt the financial industry, one happy user at a time, and introduce financial freedom through crypto.",
+    logoURI: 'https://s2.coinmarketcap.com/static/img/coins/64x64/2700.png',
+  },
+  PAR: {
+    name: 'PAR Stablecoin',
+    symbol: 'PAR',
+    address: '0x7b367a058f370c0057762280547d0b974cf3ac10',
+    chainId: 137,
+    decimals: 18,
+    website: 'https://mimo.capital/',
+    description:
+      'Mimo have a lending platform allowing people to borrow PAR, a stable token algorithmically pegged to the Euro.',
+    logoURI: 'https://assets.coingecko.com/coins/images/14153/small/par_round_200.png?1614670422',
+  },
+  EURS: {
+    name: 'STATIS EURS Token',
+    symbol: 'EURS',
+    address: '0xE111178A87A3BFf0c8d18DECBa5798827539Ae99',
+    chainId: 137,
+    decimals: 2,
+    website: 'https://stasis.net/',
+    description:
+      'EURS token is a virtual financial asset that is designed to digitally mirror the EURO on the condition that its value is tied to the value of its collateral.',
+    logoURI: 'https://assets.coingecko.com/coins/images/5164/small/EURS_300x300.png?1550571779',
+  },
+  EURt: {
+    name: 'Euro Tether',
+    symbol: 'EURt',
+    address: '0x7BDF330f423Ea880FF95fC41A280fD5eCFD3D09f',
+    chainId: 137,
+    decimals: 6,
+    website: 'https://tether.to/en/',
+    description: 'Euro Tether token (EURt) is the first euro-pegged stablecoin pegged to the Euro.',
+    logoURI:
+      'https://assets.coingecko.com/coins/images/17385/small/Tether_full_logo_dm.png?1627537298',
+  },
+  renBTC: {
+    name: 'renBTC',
+    symbol: 'renBTC',
+    address: '0xDBf31dF14B66535aF65AaC99C32e9eA844e14501',
+    chainId: 137,
+    decimals: 8,
+    website: 'https://renproject.io/',
+    description:
+      'RenBTC is an ERC-20 token built on the Ethereum network, pegged to Bitcoin. This means that each RenBTC can be always redeemed for one Bitcoin, and hence tends to maintain its value at close to the Bitcoin market rate.',
+    logoURI:
+      'https://pancakeswap.finance/images/tokens/0xfCe146bF3146100cfe5dB4129cf6C82b0eF4Ad8c.png',
+  },
+  IXT: {
+    name: 'IX Token IXT',
+    symbol: 'IXT',
+    address: '0xE06Bd4F5aAc8D0aA337D13eC88dB6defC6eAEefE',
+    chainId: 137,
+    decimals: 18,
+    logoURI:
+      'https://assets.coingecko.com/coins/images/20927/large/IXT_SYMBOL_SVG_RGB_BLACK.png?1637934555',
+    website: 'https://www.planetix.com/',
+    description:
+      'Planet IX is an online NFT-strategy game where a broken digital rendition of Planet Earth is its game field.',
+  },
+  STG: {
+    name: 'Stargate',
+    symbol: 'STG',
+    address: '0x2F6F07CDcf3588944Bf4C42aC74ff24bF56e7590',
+    chainId: 137,
+    decimals: 18,
+    logoURI:
+      'https://raw.githubusercontent.com/traderjoe-xyz/joe-tokenlists/main/logos/0x2F6F07CDcf3588944Bf4C42aC74ff24bF56e7590/logo.png',
+    website: 'https://stargate.finance/',
+    description:
+      'Stargate is a community-driven organization building the first fully composable native asset bridge, and the first dApp built on LayerZero.',
+  },
+  XSGD: {
+    name: 'StraitsX Singapore Dollar',
+    symbol: 'XSGD',
+    address: '0x769434dcA303597C8fc4997Bf3DAB233e961Eda2',
+    chainId: 137,
+    decimals: 6,
+    website: 'https://www.straitsx.com/sg',
+    description:
+      'XSGD is the digital Singapore Dollar running on the Ethereum and Zilliqa blockchains.',
+    logoURI: '',
+  },
+  jSGD: {
+    name: 'Jarvis Synthetic Singapore Dollar',
+    symbol: 'jSGD',
+    address: '0xa926db7a4CC0cb1736D5ac60495ca8Eb7214B503',
+    chainId: 137,
+    decimals: 18,
+    website: 'https://jarvis.network/',
+    description:
+      'jSGD is a multi-collateralized synthetic token tracking the price of the Singapore Dollar. It is built on the top of UMA and Chainlink.',
+    logoURI: '',
+  },
+  FUSE: {
+    name: 'Fuse',
+    symbol: 'FUSE',
+    address: '0xF915fDDa4c882731C0456a4214548Cd13A822886',
+    chainId: 137,
+    decimals: 18,
+    logoURI:
+      'https://raw.githubusercontent.com/ava-labs/bridge-tokens/main/avalanche-tokens/0xd3974AE5A9BCD4AE4c9037a25A67374a11df4154/logo.png',
+    website: 'https://fuse.io/',
+    description:
+      'Fuse was founded in 2019 with a mission to bring the power of mobile payments to communities around the world.',
+  },
+  ORBS: {
+    name: 'Orbs Token',
+    symbol: 'ORBS',
+    address: '0x614389EaAE0A6821DC49062D56BDA3d9d45Fa2ff',
+    chainId: 137,
+    decimals: 18,
+    logoURI: 'https://s2.coinmarketcap.com/static/img/coins/64x64/3835.png',
+    website: 'https://www.orbs.com/',
+    description: 'Making Your Smart Contracts Smarter',
+  },
   SX: {
     name: 'SX Network SX',
     symbol: 'SX',
