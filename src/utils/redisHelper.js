@@ -8,6 +8,7 @@ const initRedis = async () => {
   // if (!process.env.REDISCLOUD_URL) return;
   redisClient = redis.createClient({
     url: process.env.REDISCLOUD_URL || 'redis://localhost:6379',
+    password: process.env.REDISCLOUD_PWD,
   });
 
   redisClient.on('connect', async () => {
