@@ -49,7 +49,6 @@ const AURORA_RPC =
   'https://mainnet.aurora.dev/Fon6fPMs5rCdJc4mxX4kiSK1vsKdzc3D8k6UF8aruek';
 const FUSE_RPC = process.env.FUSE_RPC || 'https://rpc.fuse.io';
 const METIS_RPC = process.env.METIS_RPC || 'https://andromeda.metis.io/?owner=1088';
-const OASIS_RPC = process.env.OASIS_RPC || 'https://emerald.oasis.dev';
 const MOONBEAM_RPC = process.env.MOONBEAM_RPC || 'https://rpc.api.moonbeam.network';
 const SYS_RPC = process.env.SYS_RPC || 'https://rpc.syscoin.org/';
 const EMERALD_RPC = process.env.EMERALD_RPC || 'https://emerald.oasis.dev';
@@ -68,7 +67,6 @@ const AURORA_CHAIN_ID = ChainId.aurora;
 const FUSE_CHAIN_ID = ChainId.fuse;
 const METIS_CHAIN_ID = ChainId.metis;
 const MOONBEAM_CHAIN_ID = ChainId.moonbeam;
-const OASIS_CHAIN_ID = ChainId.oasis;
 const SYS_CHAIN_ID = ChainId.sys;
 const EMERALD_CHAIN_ID = ChainId.emerald;
 
@@ -107,7 +105,6 @@ const MULTICHAIN_RPC: Record<ChainId, string> = {
   [ChainId.aurora]: AURORA_RPC,
   [ChainId.fuse]: FUSE_RPC,
   [ChainId.metis]: METIS_RPC,
-  [ChainId.oasis]: OASIS_RPC,
   [ChainId.moonbeam]: MOONBEAM_RPC,
   [ChainId.sys]: SYS_RPC,
   [ChainId.emerald]: EMERALD_RPC,
@@ -141,27 +138,15 @@ const METIS_VAULTS_ENDPOINT =
   'https://raw.githubusercontent.com/beefyfinance/beefy-app/prod/src/features/configure/vault/metis_pools.js';
 const MOONBEAM_VAULTS_ENDPOINT =
   'https://raw.githubusercontent.com/beefyfinance/beefy-app/prod/src/features/configure/vault/moonbeam_pools.js';
-const OASIS_VAULTS_ENDPOINT =
-  'https://raw.githubusercontent.com/0xtosha/tosha-app/V1/src/features/configure/vault/oasis_pools.js';
 //  const SYS_VAULTS_ENDPOINT =
 //  'https://raw.githubusercontent.com/beefyfinance/beefy-app/prod/src/features/configure/vault/sys_pools.js';
-//  const EMERALD_VAULTS_ENDPOINT =
-//  'https://raw.githubusercontent.com/beefyfinance/beefy-app/prod/src/features/configure/vault/emerald_pools.js';
+const EMERALD_VAULTS_ENDPOINT =
+  'https://raw.githubusercontent.com/0xtosha/tosha-app/V1/src/features/configure/vault/oasis_pools.js';
 
 const MULTICHAIN_ENDPOINTS = {
-  bsc: BSC_VAULTS_ENDPOINT,
-  avax: AVAX_VAULTS_ENDPOINT,
-  polygon: POLYGON_VAULTS_ENDPOINT,
-  fantom: FANTOM_VAULTS_ENDPOINT,
-  one: ONE_VAULTS_ENDPOINT,
-  arbitrum: ARBITRUM_VAULTS_ENDPOINT,
-  celo: CELO_VAULTS_ENDPOINT,
-  metis: METIS_VAULTS_ENDPOINT,
-  oasis: OASIS_VAULTS_ENDPOINT,
-  moonbeam: MOONBEAM_VAULTS_ENDPOINT,
+  // metis: METIS_VAULTS_ENDPOINT,
   // sys: SYS_VAULTS_ENDPOINT,
-  // emerald: EMERALD_VAULTS_ENDPOINT,
-  heco: HECO_VAULTS_ENDPOINT,
+  emerald: EMERALD_VAULTS_ENDPOINT,
 };
 
 const BEEFY_PERFORMANCE_FEE = 0.045;
@@ -213,16 +198,13 @@ export {
   METIS_VAULTS_ENDPOINT,
   MOONBEAM_RPC,
   MOONBEAM_CHAIN_ID,
-  OASIS_RPC,
-  OASIS_CHAIN_ID,
-  OASIS_VAULTS_ENDPOINT,
   MOONBEAM_VAULTS_ENDPOINT,
   SYS_RPC,
   SYS_CHAIN_ID,
   // SYS_VAULTS_ENDPOINT,
   EMERALD_RPC,
   EMERALD_CHAIN_ID,
-  // EMERALD_VAULTS_ENDPOINT,
+  EMERALD_VAULTS_ENDPOINT,
   BASE_HPY,
   MINUTELY_HPY,
   HOURLY_HPY,

@@ -1,7 +1,3 @@
-const { getMetisApys } = require('./metis');
-const { getOasisApys } = require('./oasis');
-const { getMoonbeamApys } = require('./moonbeam');
-const { getSysApys } = require('./sys');
 const { getEmeraldApys } = require('./emerald');
 const { getKey, setKey } = require('../../utils/redisHelper');
 
@@ -22,7 +18,7 @@ const updateApys = async () => {
   console.log('> updating apys');
 
   try {
-    const results = await Promise.allSettled([getMetisApys(), getOasisApys(), getEmeraldApys()]);
+    const results = await Promise.allSettled([getEmeraldApys()]);
 
     for (const result of results) {
       if (result.status !== 'fulfilled') {
@@ -33,8 +29,6 @@ const updateApys = async () => {
       // Set default APY values
       let mappedApyValues = result.value;
       let mappedApyBreakdownValues = {};
-      // console.log('><><><><><><><><><><');
-      // console.log(result);
 
       // Loop through key values and move default breakdown format
       // To require totalApy key

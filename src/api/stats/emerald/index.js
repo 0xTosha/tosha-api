@@ -1,7 +1,8 @@
 const getYuzuApys = require('./getYuzuApys');
 const getYuzuDualApys = require('./getYuzuDualApys');
+const getEmeraldToshaApys = require('./getEmeraldToshaApys');
 
-const getApys = [getYuzuApys, getYuzuDualApys];
+const getApys = [getEmeraldToshaApys, getYuzuApys, getYuzuDualApys];
 
 const getEmeraldApys = async () => {
   let apys = {};

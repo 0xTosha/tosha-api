@@ -1,11 +1,11 @@
-const { oasisWeb3: web3 } = require('../../../utils/web3');
+const { emeraldWeb3: web3 } = require('../../../utils/web3');
 
 import { addressBook } from '../../../../packages/address-book/address-book';
 import { getEDecimals } from '../../../utils/getEDecimals';
 import { getToshaApys } from '../common/getToshaApys';
 
 const {
-  oasis: {
+  emerald: {
     platforms: {
       toshaio: { rewardPool },
     },
@@ -13,13 +13,15 @@ const {
   },
 } = addressBook;
 
-export const getOasisToshaApy = () => {
+const getEmeraldToshaApys = async () => {
   return getToshaApys({
     tosha: ORANGE.address,
     rewardPool: rewardPool,
     rewardId: ORANGE.symbol, // TBC
     rewardDecimals: getEDecimals(ORANGE.decimals),
-    chain: 'oasis',
+    chain: 'emerald',
     web3: web3,
   });
 };
+
+module.exports = getEmeraldToshaApys;

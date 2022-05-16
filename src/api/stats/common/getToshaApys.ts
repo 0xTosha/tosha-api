@@ -1,4 +1,5 @@
 const BigNumber = require('bignumber.js');
+const { setKey } = require('../../../utils/redisHelper');
 
 import Web3 from 'web3';
 import { convertTypeAcquisitionFromJson } from 'typescript';
@@ -25,6 +26,7 @@ export const getToshaApys = async (params: ToshaApyParams) => {
     getTotalStakedInUsd(params),
   ]);
   const simpleApy = yearlyRewardsInUsd.dividedBy(totalStakedInUsd);
+  await setKey('SIMPLE_APR', simpleApy);
   const apy = compound(simpleApy, DAILY_HPY, 1, 0.9995); // TODO:
 
   return { [params.chain + '-tosha']: apy, simpleApr: simpleApy };
@@ -47,7 +49,6 @@ const getTotalStakedInUsd = async (params: ToshaApyParams) => {
   const totalStaked = new BigNumber(
     await tokenContract.methods.balanceOf(params.rewardPool).call()
   );
-
   const tokenPrice = await fetchPrice({ oracle: 'tokens', id: 'TOSHA' });
 
   return totalStaked.times(tokenPrice).dividedBy('1e18');

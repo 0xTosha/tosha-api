@@ -52,7 +52,7 @@ const _tokens = {
     address: '0x50359e800aCde1D93BB673E235Bafb86D0846c14',
     decimals: 18,
     name: 'orange',
-    symbol: 'ORANGE',
+    symbol: 'TOSHA',
     website: 'https://www.beefy.finance/',
     description:
       'ORANGE is a Decentralized, Multi-Chain Yield Optimizer platform that allows its users to earn compound interest on their crypto holdings.',

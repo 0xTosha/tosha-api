@@ -42,9 +42,6 @@ module.exports = {
   get metisWeb3() {
     return chainRandomClients.metisRandomClient();
   },
-  get oasisWeb3() {
-    return chainRandomClients.oasisRandomClient();
-  },
   get moonbeamWeb3() {
     return chainRandomClients.moonbeamRandomClient();
   },

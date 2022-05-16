@@ -15,10 +15,10 @@ const { bifibuyback } = require('./api/stats/bifibuyback/index');
 
 router.get('/apy', stats.apy);
 router.get('/apy/breakdown', stats.apyBreakdowns);
-router.get('/bifibuyback', bifibuyback);
+// router.get('/bifibuyback', bifibuyback);
 
-//router.get('/tvl', tvl.vaultTvl);
-//router.get('/cmc', cmc.vaults);
+router.get('/tvl', tvl.vaultTvl);
+router.get('/cmc', cmc.vaults);
 
 //router.get('/supply', supply.supply);
 //router.get('/supply/total', supply.total);
@@ -29,7 +29,7 @@ router.get('/bifibuyback', bifibuyback);
 
 router.get('/lps', price.lpsPrices);
 router.get('/prices', price.tokenPrices);
-// router.get('/vaults', multichainVaults.multichainVaults);
+router.get('/vaults', multichainVaults.multichainVaults);
 
 router.get('/', noop);
 

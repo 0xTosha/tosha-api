@@ -34,16 +34,16 @@ app.context.cache = {};
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3005;
 
 const start = async () => {
   initApyService();
   initPriceService();
   initVaultService();
   initTvlService();
-  initBifiBuyBackService();
+  // initBifiBuyBackService();
   app.listen(port);
-  console.log(`> beefy-api running! (:${port})`);
+  console.log(`> tosha-api running! (:${port})`);
 };
 
 start();

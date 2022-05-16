@@ -22,6 +22,9 @@ import {
   getTradingFeeApr,
 } from '../../../utils/getTradingFeeApr';
 import { getContract, getContractWithProvider } from '../../../utils/contractHelper';
+const { getKey } = require('../../../utils/redisHelper');
+const { compound } = require('../../../utils/compound');
+const { DAILY_HPY } = require('../../../constants');
 
 export interface MasterChefApysParams {
   web3: Web3;
@@ -60,7 +63,18 @@ export const getMasterChefApys = async (
 
   const liquidityProviderFee = masterchefParams.liquidityProviderFee ?? 0.003;
 
-  return getApyBreakdown(masterchefParams.pools, tradingAprs, farmApys, liquidityProviderFee);
+  //Fetching TOSHA Apr
+  const simpleApr = await getKey('SIMPLE_APR');
+  const toshaApr = simpleApr ?? 0;
+  const toshaApy = compound(toshaApr, DAILY_HPY, 1, 0.9995);
+  return getApyBreakdown(
+    masterchefParams.pools,
+    tradingAprs,
+    farmApys,
+    liquidityProviderFee,
+    toshaApr,
+    toshaApy
+  );
 };
 
 const getTradingAprs = async (params: MasterChefApysParams) => {

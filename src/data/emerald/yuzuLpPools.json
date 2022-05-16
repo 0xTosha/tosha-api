@@ -1,20 +1,20 @@
 [
   {
-    "name": "yuzu-ceusdc-yuzu",
-    "address": "0x63217aC1600Fb337a3B7A70533dc71870E6b68cc",
+    "name": "yuzu-rose-orange",
+    "address": "0xf70DbcA53Abd6b8aACBE28B566965273AC3D53B8",
     "decimals": "1e18",
-    "poolId": 4,
+    "poolId": 5,
     "chainId": 42262,
     "lp0": {
-      "address": "0x81ECac0D6Be0550A00FF064a4f9dd2400585FE9c",
+      "address": "0x21C718C22D52d0F3a789b752D4c2fD5908a8A733",
       "oracle": "tokens",
-      "oracleId": "USDC",
-      "decimals": "1e6"
+      "oracleId": "wROSE",
+      "decimals": "1e18"
     },
     "lp1": {
-      "address": "0xf02b3e437304892105992512539F769423a515Cb",
+      "address": "0x79801BFFA6699d2Be730f818e9A0ad49BBc65951",
       "oracle": "tokens",
-      "oracleId": "YUZU",
+      "oracleId": "TOSHA",
       "decimals": "1e18"
     }
   },
@@ -76,7 +76,7 @@
     }
   },
   {
-    "name": "yuzu-wrose-usdt",
+    "name": "yuzu-wrose-weusdt",
     "address": "0xfb9BD52Abe613A5C4A20e9fC09462A2EC5F2d1B2",
     "decimals": "1e18",
     "poolId": 1,

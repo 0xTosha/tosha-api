@@ -17,7 +17,7 @@ export interface ApyBreakdown {
   lpFee?: number;
   tradingApr?: number;
   totalApy?: number;
-  toshaApr?: number;
+  toshaApr?: BigNumber;
   toshaApy?: number;
 }
 
@@ -31,7 +31,7 @@ export const getApyBreakdown = (
   tradingAprs: Record<string, BigNumber>,
   farmAprs: BigNumber[],
   providerFee: number,
-  toshaApr?: number,
+  toshaApr?: BigNumber,
   toshaApy?: number,
   performanceFee: number = BEEFY_PERFORMANCE_FEE
 ): ApyBreakdownResult => {

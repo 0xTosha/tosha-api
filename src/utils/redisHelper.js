@@ -3,7 +3,9 @@ const redis = require('redis');
 var redisClient;
 
 const initRedis = async () => {
-  if (!process.env.REDISCLOUD_URL) return;
+  console.log('CHECKING REDIS...');
+  console.log(process.env.REDISCLOUD_URL);
+  // if (!process.env.REDISCLOUD_URL) return;
   redisClient = redis.createClient({
     url: process.env.REDISCLOUD_URL || 'redis://localhost:6379',
   });
@@ -21,7 +23,10 @@ const initRedis = async () => {
 };
 
 const setKey = async (key, value) => {
-  if (!redisClient) return;
+  if (!redisClient) {
+    console.log('NO REDIS CLIENT FOUND');
+    return;
+  }
   try {
     await redisClient.set(key, JSON.stringify(value));
   } catch (err) {

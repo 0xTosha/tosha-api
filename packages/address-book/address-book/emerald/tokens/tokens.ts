@@ -29,6 +29,17 @@ const _tokens = {
     logoURI:
       'https://raw.githubusercontent.com/beefyfinance/beefy-app/prod/src/images/single-assets/BIFI.png',
   },
+  ORANGE: {
+    name: 'Tosha.io',
+    symbol: 'TOSHA',
+    address: '0x79801BFFA6699d2Be730f818e9A0ad49BBc65951',
+    chainId: 42262,
+    decimals: 18,
+    website: 'https://tosha.io/',
+    description:
+      'Tosha.io is a Decentralized, Multi-Chain Yield Optimizer platform that allows its users to earn compound interest on their crypto holdings.',
+    logoURI: 'https://raw.githubusercontent.com/0xTosha/tosha-app/blob/DEV/src/images/logot.png',
+  },
   ceUSDC: {
     name: 'USD Coin (Celer)',
     symbol: 'ceUSDC',
